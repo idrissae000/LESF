@@ -8,22 +8,17 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
 function getAuth() {
-  const scopes = [
-    'https://www.googleapis.com/auth/drive',
-    'https://www.googleapis.com/auth/spreadsheets',
-  ]
-
-  // Preferred: full service account JSON stored as base64 — avoids all newline issues
-  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
-    const sa = JSON.parse(
-      Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_JSON, 'base64').toString('utf-8')
-    )
-    return new JWT({ email: sa.client_email, key: sa.private_key, scopes })
-  }
-
-  // Fallback: individual env vars
-  const key = (process.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n')
-  return new JWT({ email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL, key, scopes })
+  const sa = JSON.parse(
+    Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_JSON!, 'base64').toString('utf-8')
+  )
+  return new JWT({
+    email: sa.client_email,
+    key: (sa.private_key as string).replace(/\\n/g, '\n'),
+    scopes: [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/spreadsheets',
+    ],
+  })
 }
 
 function bufferToStream(buf: Buffer): Readable {
