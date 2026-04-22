@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
-import { Readable } from 'stream'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
@@ -14,37 +13,8 @@ function getAuth() {
   return new JWT({
     email: sa.client_email,
     key: (sa.private_key as string).replace(/\\n/g, '\n'),
-    scopes: [
-      'https://www.googleapis.com/auth/drive',
-      'https://www.googleapis.com/auth/spreadsheets',
-    ],
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
-}
-
-function bufferToStream(buf: Buffer): Readable {
-  const stream = new Readable()
-  stream.push(buf)
-  stream.push(null)
-  return stream
-}
-
-async function uploadToDrive(
-  drive: ReturnType<typeof google.drive>,
-  folderId: string,
-  buf: Buffer,
-  name: string,
-): Promise<string> {
-  const res = await drive.files.create({
-    requestBody: { name, parents: [folderId] },
-    media: { mimeType: 'application/pdf', body: bufferToStream(buf) },
-    fields: 'id',
-  })
-  const fileId = res.data.id!
-  await drive.permissions.create({
-    fileId,
-    requestBody: { role: 'reader', type: 'anyone' },
-  })
-  return `https://drive.google.com/file/d/${fileId}/view`
 }
 
 const HEADERS = [
@@ -172,21 +142,10 @@ export async function POST(request: NextRequest) {
       writingSampleFile.arrayBuffer().then(Buffer.from),
     ])
 
-    const auth     = getAuth()
-    const drive    = google.drive({ version: 'v3', auth })
-    const sheets   = google.sheets({ version: 'v4', auth })
-    const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID!
-    const sheetId  = process.env.GOOGLE_SHEET_ID!
-    const safeName = `${firstName}_${lastName}`.replace(/\s+/g, '_')
+    const auth    = getAuth()
+    const sheets  = google.sheets({ version: 'v4', auth })
+    const sheetId = process.env.GOOGLE_SHEET_ID!
 
-    // Upload to Drive — get shareable links for the sheet
-    const [transcriptUrl, resumeUrl, writingSampleUrl] = await Promise.all([
-      uploadToDrive(drive, folderId, transcriptBuf,    `${safeName}_transcript.pdf`),
-      uploadToDrive(drive, folderId, resumeBuf,        `${safeName}_resume.pdf`),
-      uploadToDrive(drive, folderId, writingSampleBuf, `${safeName}_writing_sample.pdf`),
-    ])
-
-    // Append row to Sheet with Drive links
     await ensureHeaders(sheets, sheetId)
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
@@ -199,7 +158,7 @@ export async function POST(request: NextRequest) {
           address, city, state, zip,
           schoolName, gradeLevel, major, gpa, graduationYear,
           essay1, essay2,
-          transcriptUrl, resumeUrl, writingSampleUrl,
+          transcriptFile.name, resumeFile.name, writingSampleFile.name,
           extracurriculars, volunteerWork,
           ref1Name, ref1Title, ref1Email, ref1Phone,
           ref2Name, ref2Title, ref2Email, ref2Phone,
@@ -224,10 +183,7 @@ export async function POST(request: NextRequest) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>School:</strong> ${schoolName}</p>
           <p><strong>GPA:</strong> ${gpa}</p>
-          <hr />
-          <p><strong>Transcript:</strong> <a href="${transcriptUrl}">${transcriptUrl}</a></p>
-          <p><strong>Resume:</strong> <a href="${resumeUrl}">${resumeUrl}</a></p>
-          <p><strong>Writing Sample:</strong> <a href="${writingSampleUrl}">${writingSampleUrl}</a></p>
+          <p>PDFs are attached to this email.</p>
         `,
         attachments: [
           { filename: transcriptFile.name,    content: transcriptBuf },
