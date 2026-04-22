@@ -3,33 +3,27 @@ import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { Readable } from 'stream'
-import { createPrivateKey } from 'crypto'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
-function normalizeKey(raw: string): string {
-  // Fix escaped newlines Vercel may store
-  const pem = raw.replace(/\\n/g, '\n')
-  // Re-export as PKCS8 so OpenSSL 3 (Node 18+) accepts it
-  try {
-    const keyObj = createPrivateKey({ key: pem, format: 'pem' })
-    return keyObj.export({ type: 'pkcs8', format: 'pem' }) as string
-  } catch {
-    return pem
-  }
-}
-
 function getAuth() {
-  const key = normalizeKey(process.env.GOOGLE_PRIVATE_KEY ?? '')
-  return new JWT({
-    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    key,
-    scopes: [
-      'https://www.googleapis.com/auth/drive',
-      'https://www.googleapis.com/auth/spreadsheets',
-    ],
-  })
+  const scopes = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/spreadsheets',
+  ]
+
+  // Preferred: full service account JSON stored as base64 — avoids all newline issues
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    const sa = JSON.parse(
+      Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_JSON, 'base64').toString('utf-8')
+    )
+    return new JWT({ email: sa.client_email, key: sa.private_key, scopes })
+  }
+
+  // Fallback: individual env vars
+  const key = (process.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n')
+  return new JWT({ email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL, key, scopes })
 }
 
 function bufferToStream(buf: Buffer): Readable {
