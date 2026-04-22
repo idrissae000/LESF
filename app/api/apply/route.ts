@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
+import { Readable } from 'stream'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
@@ -13,8 +14,37 @@ function getAuth() {
   return new JWT({
     email: sa.client_email,
     key: (sa.private_key as string).replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    scopes: [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/spreadsheets',
+    ],
   })
+}
+
+function bufferToStream(buf: Buffer): Readable {
+  const stream = new Readable()
+  stream.push(buf)
+  stream.push(null)
+  return stream
+}
+
+async function uploadToDrive(
+  drive: ReturnType<typeof google.drive>,
+  folderId: string,
+  buf: Buffer,
+  name: string,
+): Promise<string> {
+  const res = await drive.files.create({
+    requestBody: { name, parents: [folderId] },
+    media: { mimeType: 'application/pdf', body: bufferToStream(buf) },
+    fields: 'id',
+  })
+  const fileId = res.data.id!
+  await drive.permissions.create({
+    fileId,
+    requestBody: { role: 'reader', type: 'anyone' },
+  })
+  return `https://drive.google.com/file/d/${fileId}/view`
 }
 
 async function ensureHeaders(
@@ -36,7 +66,7 @@ async function ensureHeaders(
         'Address', 'City', 'State', 'ZIP',
         'School Name', 'Grade Level', 'Major', 'GPA', 'Graduation Year',
         'Essay 1', 'Essay 2',
-        'Transcript File', 'Resume File', 'Writing Sample File',
+        'Transcript URL', 'Resume URL', 'Writing Sample URL',
         'Extracurriculars', 'Volunteer Work',
         'Ref 1 Name', 'Ref 1 Title', 'Ref 1 Email', 'Ref 1 Phone',
         'Ref 2 Name', 'Ref 2 Title', 'Ref 2 Email', 'Ref 2 Phone',
@@ -86,18 +116,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required files.' }, { status: 400 })
     }
 
-    // Convert files to buffers for email attachments
+    // Convert files to buffers once — reused for Drive upload and email attachment
     const [transcriptBuf, resumeBuf, writingSampleBuf] = await Promise.all([
       transcriptFile.arrayBuffer().then(Buffer.from),
       resumeFile.arrayBuffer().then(Buffer.from),
       writingSampleFile.arrayBuffer().then(Buffer.from),
     ])
 
-    // Append to Google Sheet
-    const auth   = getAuth()
-    const sheets = google.sheets({ version: 'v4', auth })
-    const sheetId = process.env.GOOGLE_SHEET_ID!
+    const auth     = getAuth()
+    const drive    = google.drive({ version: 'v3', auth })
+    const sheets   = google.sheets({ version: 'v4', auth })
+    const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID!
+    const sheetId  = process.env.GOOGLE_SHEET_ID!
+    const safeName = `${firstName}_${lastName}`.replace(/\s+/g, '_')
 
+    // Upload to Drive — get shareable links for the sheet
+    const [transcriptUrl, resumeUrl, writingSampleUrl] = await Promise.all([
+      uploadToDrive(drive, folderId, transcriptBuf,    `${safeName}_transcript.pdf`),
+      uploadToDrive(drive, folderId, resumeBuf,        `${safeName}_resume.pdf`),
+      uploadToDrive(drive, folderId, writingSampleBuf, `${safeName}_writing_sample.pdf`),
+    ])
+
+    // Append row to Sheet with Drive links
     await ensureHeaders(sheets, sheetId)
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
@@ -110,7 +150,7 @@ export async function POST(request: NextRequest) {
           address, city, state, zip,
           schoolName, gradeLevel, major, gpa, graduationYear,
           essay1, essay2,
-          transcriptFile.name, resumeFile.name, writingSampleFile.name,
+          transcriptUrl, resumeUrl, writingSampleUrl,
           extracurriculars, volunteerWork,
           ref1Name, ref1Title, ref1Email, ref1Phone,
           ref2Name, ref2Title, ref2Email, ref2Phone,
@@ -120,7 +160,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Send emails
+    // Send emails — admin gets Drive links + PDF attachments, applicant gets confirmation
     const resend = new Resend(process.env.RESEND_API_KEY)
     const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <onboarding@resend.dev>'
 
@@ -135,6 +175,10 @@ export async function POST(request: NextRequest) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>School:</strong> ${schoolName}</p>
           <p><strong>GPA:</strong> ${gpa}</p>
+          <hr />
+          <p><strong>Transcript:</strong> <a href="${transcriptUrl}">${transcriptUrl}</a></p>
+          <p><strong>Resume:</strong> <a href="${resumeUrl}">${resumeUrl}</a></p>
+          <p><strong>Writing Sample:</strong> <a href="${writingSampleUrl}">${writingSampleUrl}</a></p>
         `,
         attachments: [
           { filename: transcriptFile.name,    content: transcriptBuf },
@@ -148,7 +192,7 @@ export async function POST(request: NextRequest) {
         subject: 'Application Received — Lonestar Eritrean Scholars Fund',
         html: `
           <h2>Thank you for applying, ${firstName}!</h2>
-          <p>We've received your application for the Lonestar Eritrean Scholars Fund scholarship.</p>
+          <p>We have received your application for the Lonestar Eritrean Scholars Fund scholarship.</p>
           <p>Winners will be announced on <strong>August 2, 2025</strong>.</p>
           <p>Questions? Email <a href="mailto:ob.alkhaffaf@gmail.com">ob.alkhaffaf@gmail.com</a>.</p>
         `,
