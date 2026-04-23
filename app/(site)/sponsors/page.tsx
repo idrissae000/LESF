@@ -8,7 +8,7 @@ const TIERS = [
     name: 'Bronze',
     amount: '$500',
     color: '#a0785a',
-    badge: '🟢',
+    badgeColor: '#b87333',
     perks: [
       'Name listed on event website',
       'Social media shoutout (1 post + 5 stories)',
@@ -20,7 +20,7 @@ const TIERS = [
     name: 'Silver',
     amount: '$1,000',
     color: '#7a9cb8',
-    badge: '🔵',
+    badgeColor: '#9e9e9e',
     perks: [
       'All Bronze benefits, plus:',
       'Logo on website and event flyers',
@@ -32,7 +32,7 @@ const TIERS = [
     name: 'Gold',
     amount: '$1,500',
     color: '#c9973a',
-    badge: '🟣',
+    badgeColor: '#d4a017',
     featured: true,
     perks: [
       'All Silver benefits, plus:',
@@ -46,7 +46,7 @@ const TIERS = [
     name: 'Platinum',
     amount: '$2,500',
     color: '#9b8ea0',
-    badge: '🟡',
+    badgeColor: '#6ca0dc',
     perks: [
       'All Gold benefits, plus:',
       'Top-tier logo placement',
@@ -59,7 +59,7 @@ const TIERS = [
     name: 'Title Sponsor',
     amount: '$5,000+',
     color: '#c0392b',
-    badge: '🔴',
+    badgeColor: '#2c2c2c',
     perks: [
       'Event naming rights ("Presented by [Your Name]")',
       'Premium logo placement everywhere',
@@ -145,10 +145,13 @@ export default function SponsorsPage() {
             Choose Your Tier
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: '1.25rem' }}>
-            {TIERS.map(({ name, amount, color, badge, featured, perks }) => (
+            {TIERS.map(({ name, amount, color, badgeColor, featured, perks }) => (
               <div key={name} style={{ background: featured ? 'var(--forest)' : 'var(--cream)', border: `2px solid ${featured ? 'var(--gold)' : 'var(--border)'}`, borderRadius: '4px', padding: '1.75rem', position: 'relative', color: featured ? 'white' : 'inherit' }}>
                 {featured && <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', background: 'var(--gold)', color: 'var(--forest)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '0.2rem 0.75rem', borderRadius: '0 0 4px 4px' }}>Most Popular</div>}
-                <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{badge}</div>
+                <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'block', marginBottom: '0.65rem' }}>
+                  <circle cx="14" cy="14" r="12" fill={badgeColor} />
+                  <circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                </svg>
                 <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.4rem', fontWeight: 600, color: featured ? 'var(--gold-light)' : 'var(--forest)', marginBottom: '0.25rem' }}>{name}</h3>
                 <div style={{ fontSize: '1.6rem', fontFamily: 'var(--font-cormorant), serif', fontWeight: 600, color: featured ? 'white' : color, marginBottom: '1.25rem' }}>{amount}</div>
                 <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
