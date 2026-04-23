@@ -177,14 +177,52 @@ export async function POST(request: NextRequest) {
         from,
         to: 'idriss.ae000@gmail.com',
         subject: `New Application — ${firstName} ${lastName}`,
-        html: `
-          <h2>New Scholarship Application</h2>
-          <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>School:</strong> ${schoolName}</p>
-          <p><strong>GPA:</strong> ${gpa}</p>
-          <p>PDFs are attached to this email.</p>
-        `,
+        html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
+<h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Scholarship Application</h1>
+
+<h2 style="color:#1a3328;margin-top:28px">Personal</h2>
+<table style="width:100%;border-collapse:collapse">
+  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Full Name</td><td style="padding:6px 0"><strong>${firstName} ${lastName}</strong></td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Email</td><td style="padding:6px 0">${email}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Phone</td><td style="padding:6px 0">${phone}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}</td></tr>
+</table>
+
+<h2 style="color:#1a3328;margin-top:28px">Education</h2>
+<table style="width:100%;border-collapse:collapse">
+  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">School</td><td style="padding:6px 0">${schoolName}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Grade Level</td><td style="padding:6px 0">${gradeLevel}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Major</td><td style="padding:6px 0">${major}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">GPA</td><td style="padding:6px 0">${gpa}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Graduation Year</td><td style="padding:6px 0">${graduationYear}</td></tr>
+</table>
+
+<h2 style="color:#1a3328;margin-top:28px">Essays</h2>
+<p style="color:#6b6b6b;margin-bottom:4px"><strong>Question 1 — Leadership</strong></p>
+<p style="background:#f0ebe1;padding:12px;border-left:3px solid #c9973a;line-height:1.7;white-space:pre-wrap">${essay1}</p>
+<p style="color:#6b6b6b;margin-bottom:4px;margin-top:20px"><strong>Question 2 — Eritrean Identity &amp; Community</strong></p>
+<p style="background:#f0ebe1;padding:12px;border-left:3px solid #c9973a;line-height:1.7;white-space:pre-wrap">${essay2}</p>
+
+<h2 style="color:#1a3328;margin-top:28px">Uploads</h2>
+<table style="width:100%;border-collapse:collapse">
+  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Transcript</td><td style="padding:6px 0">${transcriptFile.name}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Resume</td><td style="padding:6px 0">${resumeFile.name}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Writing Sample</td><td style="padding:6px 0">${writingSampleFile.name}</td></tr>
+</table>
+<p style="color:#6b6b6b;font-size:13px">All three PDFs are attached to this email.</p>
+
+<h2 style="color:#1a3328;margin-top:28px">Optional</h2>
+<table style="width:100%;border-collapse:collapse">
+  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Extracurriculars</td><td style="padding:6px 0">${extracurriculars || '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Volunteer Work</td><td style="padding:6px 0">${volunteerWork || '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Ref 1</td><td style="padding:6px 0">${ref1Name ? `${ref1Name}, ${ref1Title} — ${ref1Email} / ${ref1Phone}` : '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Ref 2</td><td style="padding:6px 0">${ref2Name ? `${ref2Name}, ${ref2Title} — ${ref2Email} / ${ref2Phone}` : '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Lives With Both Parents</td><td style="padding:6px 0">${householdParents || '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Siblings</td><td style="padding:6px 0">${siblings || '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Currently Works</td><td style="padding:6px 0">${currentlyWorks || '—'}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Parent Occupations</td><td style="padding:6px 0">${parentOccupations || '—'}</td></tr>
+</table>
+</body></html>`,
         attachments: [
           { filename: transcriptFile.name,    content: transcriptBuf },
           { filename: resumeFile.name,        content: resumeBuf },
