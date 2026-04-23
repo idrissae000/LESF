@@ -61,7 +61,7 @@ export default function Nav() {
           onClick={() => setOpen(o => !o)}
           className="nav-hamburger"
           aria-label="Toggle menu"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'none' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem' }}
         >
           <span style={{ display: 'block', width: '22px', height: '2px', background: 'white', margin: '4px 0', transition: 'all 0.2s', transform: open ? 'rotate(45deg) translate(4px,4px)' : 'none' }} />
           <span style={{ display: 'block', width: '22px', height: '2px', background: 'white', margin: '4px 0', transition: 'all 0.2s', opacity: open ? 0 : 1 }} />
@@ -94,12 +94,6 @@ export default function Nav() {
         </div>
       )}
 
-      <style>{`
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-hamburger { display: block !important; }
-        }
-      `}</style>
     </nav>
   )
 }

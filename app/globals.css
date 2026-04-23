@@ -558,3 +558,86 @@ textarea.essay {
 .review-summary .review-section-label:first-child {
   margin-top: 0;
 }
+
+/* ── Nav responsive ── */
+.nav-desktop { display: flex; }
+.nav-hamburger { display: none; }
+
+@media (max-width: 768px) {
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: block !important; }
+}
+
+/* ── Global overflow guard ── */
+html, body { overflow-x: hidden; }
+
+/* ── Mobile layout ── */
+@media (max-width: 640px) {
+  /* Buttons: minimum tap target */
+  .btn {
+    min-height: 44px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  /* Form nav buttons stack */
+  .form-nav,
+  .nav-buttons {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  .form-nav .btn,
+  .nav-buttons .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Field rows stack */
+  .field-row {
+    flex-direction: column;
+  }
+
+  /* Progress tabs scroll horizontally */
+  .progress-tabs,
+  .progress-inner {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding-bottom: 2px;
+  }
+  .progress-tabs .tab,
+  .step-tab {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  /* File upload full width */
+  .upload-area {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Step container padding */
+  .step-container {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Form shell hero */
+  .hero {
+    padding: 2.5rem 1rem 2rem;
+  }
+
+  /* Page layout padding */
+  .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Generic marketing sections */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
