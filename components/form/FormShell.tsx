@@ -114,13 +114,8 @@ export default function FormShell() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="logo">Lonestar Eritrean Scholars Fund</div>
-        <div className="deadline">Applications close July 15, 2025</div>
-      </header>
-
       <div className="hero">
-        <div className="eyebrow">First Annual Scholarship</div>
+        <div className="eyebrow">First Annual Scholarship · Applications close July 15, 2026</div>
         <h1>Invest in Your Future.<br /><em>Apply Today.</em></h1>
         <p>Supporting promising Eritrean-American undergraduate students as they pursue their academic dreams.</p>
         <div className="hero-meta">
@@ -149,7 +144,7 @@ export default function FormShell() {
         </div>
       )}
 
-      <main className="page">
+      <div className="page">
         {success ? (
           <div className="success-screen">
             <div className="checkmark">✓</div>
@@ -230,7 +225,7 @@ export default function FormShell() {
             )}
           </form>
         )}
-      </main>
+      </div>
     </>
   )
 }
