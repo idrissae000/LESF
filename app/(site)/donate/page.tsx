@@ -40,7 +40,7 @@ export default function DonatePage() {
               { icon: '🏛️', title: '501(c)(3) Tax Deductible', body: 'We are a registered non-profit. Your donation qualifies as a tax deduction.' },
               { icon: '🌍', title: 'Strengthen Our Community', body: 'Investing in education lifts the entire Eritrean-American community.' },
             ].map(({ icon, title, body }) => (
-              <div key={title} style={{ background: 'white', border: '1px solid var(--border)', borderTop: '3px solid var(--gold)', borderRadius: '4px', padding: '1.5rem' }}>
+              <div key={title} className="card-lift" style={{ background: 'white', border: '1px solid var(--border)', borderTop: '3px solid var(--gold)', borderRadius: '4px', padding: '1.5rem' }}>
                 <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{icon}</div>
                 <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.15rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>{title}</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.87rem', lineHeight: 1.65 }}>{body}</p>

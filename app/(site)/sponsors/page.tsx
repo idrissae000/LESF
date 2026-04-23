@@ -127,7 +127,7 @@ export default function SponsorsPage() {
               { icon: '🤝', title: 'Social Responsibility', body: 'Enhance your brand profile through meaningful community involvement.' },
               { icon: '💼', title: 'Tax Benefits', body: 'Qualifies as a 501(c)(3) charitable donation and as a business expense for federal taxes.' },
             ].map(({ icon, title, body }) => (
-              <div key={title} style={{ background: 'white', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.5rem', borderTop: '3px solid var(--gold)' }}>
+              <div key={title} className="card-lift" style={{ background: 'white', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.5rem', borderTop: '3px solid var(--gold)' }}>
                 <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{icon}</div>
                 <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>{title}</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.65 }}>{body}</p>

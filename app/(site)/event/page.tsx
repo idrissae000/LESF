@@ -10,11 +10,11 @@ export default function EventPage() {
       <section style={{ background: 'var(--forest)', color: 'white', padding: '5rem 1.5rem 4rem', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.18) 0%, transparent 65%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '720px', margin: '0 auto', position: 'relative' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>August 1, 2026</p>
-          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(2.2rem, 6vw, 3.8rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '1rem' }}>
+          <p data-hero-item style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>August 1, 2026</p>
+          <h1 data-hero-item style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(2.2rem, 6vw, 3.8rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '1rem' }}>
             The Giveback Kickback
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '540px', margin: '0 auto' }}>
+          <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '540px', margin: '0 auto' }}>
             A high-energy community celebration bringing together young Eritreans, professionals, and supporters for a meaningful cause.
           </p>
         </div>
@@ -70,7 +70,7 @@ export default function EventPage() {
               { icon: '🤝', title: 'Networking', body: 'Connect with professionals, community leaders, sponsors, and fellow Eritrean-Americans.' },
               { icon: '📢', title: 'Wide Reach', body: 'Marketing and social media will amplify the event to thousands of community members across North America.' },
             ].map(({ icon, title, body }) => (
-              <div key={title} style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.75rem', borderTop: '3px solid var(--gold)' }}>
+              <div key={title} className="card-lift" style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.75rem', borderTop: '3px solid var(--gold)' }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{icon}</div>
                 <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.2rem', color: 'var(--forest)', marginBottom: '0.6rem' }}>{title}</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.7 }}>{body}</p>

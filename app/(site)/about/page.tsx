@@ -28,11 +28,11 @@ export default function AboutPage() {
       <section style={{ background: 'var(--forest)', color: 'white', padding: '5rem 1.5rem 4rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 50%, rgba(201,151,58,0.12) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>First Annual Scholarship</p>
-          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 600, lineHeight: 1.15, marginBottom: '1rem' }}>
+          <p data-hero-item style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>First Annual Scholarship</p>
+          <h1 data-hero-item style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 600, lineHeight: 1.15, marginBottom: '1rem' }}>
             About the Fund
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75, maxWidth: '580px' }}>
+          <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75, maxWidth: '580px' }}>
             The Lonestar Eritrean Scholars Fund was founded by members of the Eritrean community in Dallas to support young college students achieve their dreams.
           </p>
         </div>

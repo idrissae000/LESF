@@ -36,6 +36,7 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
+                className={!isApply ? 'nav-link-animated' : undefined}
                 style={{
                   padding: isApply ? '0.45rem 1.1rem' : '0.45rem 0.85rem',
                   fontSize: '0.8rem',
