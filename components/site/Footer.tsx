@@ -14,12 +14,13 @@ export default function Footer() {
         </div>
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
           {[
-            { href: '/',         label: 'Home' },
-            { href: '/about',    label: 'About' },
-            { href: '/event',    label: 'Event' },
-            { href: '/sponsors', label: 'Sponsors' },
-            { href: '/donate',   label: 'Donate' },
-            { href: '/contact',  label: 'Contact' },
+            { href: '/',           label: 'Home' },
+            { href: '/about',      label: 'About' },
+            { href: '/event',      label: 'Event' },
+            { href: '/mentorship', label: 'Mentorship' },
+            { href: '/sponsors',   label: 'Sponsors' },
+            { href: '/donate',     label: 'Donate' },
+            { href: '/contact',    label: 'Contact' },
           ].map(({ href, label }) => (
             <Link key={href} href={href} style={{ fontSize: '0.78rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
               {label}

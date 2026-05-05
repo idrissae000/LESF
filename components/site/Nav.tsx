@@ -5,13 +5,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
-  { href: '/',         label: 'Home' },
-  { href: '/about',    label: 'About' },
-  { href: '/apply',    label: 'Apply' },
-  { href: '/event',    label: 'Event' },
-  { href: '/sponsors', label: 'Sponsors' },
-  { href: '/donate',   label: 'Donate' },
-  { href: '/contact',  label: 'Contact' },
+  { href: '/',            label: 'Home' },
+  { href: '/about',       label: 'About' },
+  { href: '/apply',       label: 'Apply' },
+  { href: '/event',       label: 'Event' },
+  { href: '/mentorship',  label: 'Mentorship' },
+  { href: '/sponsors',    label: 'Sponsors' },
+  { href: '/donate',      label: 'Donate' },
+  { href: '/contact',     label: 'Contact' },
 ]
 
 export default function Nav() {
