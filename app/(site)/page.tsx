@@ -122,6 +122,39 @@ export default function HomePage() {
         </ScrollReveal>
       </section>
 
+      {/* Mentorship CTA */}
+      <section style={{ background: 'white', padding: '5rem 1.5rem', borderTop: '1px solid var(--border)' }}>
+        <ScrollReveal>
+          <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '3rem', alignItems: 'center' }}>
+            <div>
+              <p style={{ fontSize: '0.7rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Mentorship Program</p>
+              <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 600, color: 'var(--forest)', lineHeight: 1.2, marginBottom: '1rem' }}>
+                Want to give back?<br />Become a mentor.
+              </h2>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.75rem', fontSize: '0.97rem', maxWidth: '420px' }}>
+                Mentors are paired with Eritrean-American students to offer guidance, share their professional experience, and invest in the next generation of our community. Your story matters too.
+              </p>
+              <Link href="/mentorship" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--forest)', color: 'white', fontWeight: 600, padding: '0.85rem 2rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.88rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Apply to Mentor →
+              </Link>
+            </div>
+            <div style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: '4px', padding: '2rem', borderLeft: '4px solid var(--gold)' }}>
+              <p style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.3rem', color: 'var(--forest)', lineHeight: 1.65, fontStyle: 'italic', marginBottom: '1.25rem' }}>
+                &ldquo;The most meaningful thing I can do is help a young Eritrean-American see what&apos;s possible — because someone did that for me.&rdquo;
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                {['Share your professional journey', 'Open doors and make introductions', 'Meet monthly — on your schedule'].map(item => (
+                  <div key={item} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                    <span style={{ color: 'var(--gold)', flexShrink: 0, marginTop: '1px' }}>✦</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* CTA */}
       <section style={{ background: 'var(--forest)', color: 'white', padding: '5rem 1.5rem', textAlign: 'center' }}>
         <ScrollReveal>
