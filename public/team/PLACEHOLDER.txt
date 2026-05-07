@@ -1,0 +1,13 @@
+Team photos go in this folder.
+
+Expected files:
+  eddy.jpg     — Edekel Tecle, Director / Co-Founder
+  matthew.jpg  — Meron Mesfin, Director / Co-Founder
+
+Recommended specs:
+  Format : JPEG
+  Size   : 600 × 700 px (portrait) or square crop 600 × 600 px
+  Quality: 85–90%
+
+Current files are solid-color PNG placeholders. Replace them with
+real photos — the page will render them immediately, no code change needed.
