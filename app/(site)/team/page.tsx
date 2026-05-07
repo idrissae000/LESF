@@ -5,6 +5,7 @@ export const metadata: Metadata = { title: 'Our Team — Lonestar Eritrean Schol
 const TEAM = [
   {
     photo: '/team/eddy.jpg',
+    photoPosition: '60% 25%',
     name: 'Edekel Tecle',
     title: 'Director, Co-Founder',
     bio: [
@@ -14,6 +15,7 @@ const TEAM = [
   },
   {
     photo: '/team/matthew.jpg',
+    photoPosition: 'top center',
     name: 'Meron Mesfin',
     title: 'Director, Co-Founder',
     bio: [
@@ -46,7 +48,7 @@ export default function TeamPage() {
       {/* Team cards */}
       <section style={{ background: 'var(--cream)', padding: '5rem 1.5rem' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
-          {TEAM.map(({ photo, name, title, bio }) => (
+          {TEAM.map(({ photo, photoPosition, name, title, bio }) => (
             <div
               key={name}
               style={{
@@ -69,7 +71,7 @@ export default function TeamPage() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'top center',
+                    objectPosition: photoPosition,
                   }}
                 />
               </div>
