@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Our Team — Lonestar Eritrean Schol
 const TEAM = [
   {
     photo: '/team/eddy.jpg',
-    photoPosition: '60% 25%',
+    photoPosition: '65% 70%',
     name: 'Edekel Tecle',
     title: 'Director, Co-Founder',
     bio: [
