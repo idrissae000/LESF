@@ -137,6 +137,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required files.' }, { status: 400 })
     }
 
+    // Validate each file: PDF magic bytes, .pdf extension, 10 MB max
+    const MAX_BYTES = 10 * 1024 * 1024
+    const PDF_MAGIC = Buffer.from('%PDF')
+
+    async function validatePDF(file: File): Promise<boolean> {
+      if (!file.name.toLowerCase().endsWith('.pdf')) return false
+      if (file.size > MAX_BYTES) return false
+      const header = Buffer.from(await file.slice(0, 4).arrayBuffer())
+      return header.equals(PDF_MAGIC)
+    }
+
+    const [tOk, rOk, wOk] = await Promise.all([
+      validatePDF(transcriptFile),
+      validatePDF(resumeFile),
+      validatePDF(writingSampleFile),
+    ])
+
+    if (!tOk || !rOk || !wOk) {
+      return NextResponse.json({ error: 'Invalid file. Each upload must be a PDF under 10 MB.' }, { status: 400 })
+    }
+
     // Convert files to buffers once — reused for Drive upload and email attachment
     const [transcriptBuf, resumeBuf, writingSampleBuf] = await Promise.all([
       transcriptFile.arrayBuffer().then(Buffer.from),
