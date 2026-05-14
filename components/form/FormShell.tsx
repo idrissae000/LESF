@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { INIT_FIELDS, type FormFields, type UploadedFiles } from './types'
 import StepPersonal from './StepPersonal'
 import StepEducation from './StepEducation'
@@ -59,6 +59,7 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
 }
 
 export default function FormShell() {
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const [step, setStep] = useState(1)
   const [fields, setFields] = useState<FormFields>(INIT_FIELDS)
   const [files, setFiles] = useState<UploadedFiles>({})
@@ -96,6 +97,7 @@ export default function FormShell() {
     try {
       const fd = new FormData()
       Object.entries(fields).forEach(([k, v]) => fd.append(k, String(v)))
+      fd.append('website', honeypotRef.current?.value ?? '')
       if (files.transcript) fd.append('transcript', files.transcript)
       if (files.resume) fd.append('resume', files.resume)
       if (files.writingSample) fd.append('writingSample', files.writingSample)
@@ -163,6 +165,7 @@ export default function FormShell() {
           </div>
         ) : (
           <form noValidate>
+            <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
             {step === 1 && (
               <StepPersonal
                 key="step-1"

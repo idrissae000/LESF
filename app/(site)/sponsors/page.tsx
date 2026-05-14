@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { FormEvent } from 'react'
 
 const TIERS = [
@@ -72,6 +72,7 @@ const TIERS = [
 ]
 
 export default function SponsorsPage() {
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const [form, setForm] = useState({ businessName: '', contactName: '', email: '', phone: '', tier: '', message: '' })
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -83,7 +84,7 @@ export default function SponsorsPage() {
     e.preventDefault()
     setLoading(true); setError('')
     try {
-      const res = await fetch('/api/sponsor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const res = await fetch('/api/sponsor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, website: honeypotRef.current?.value ?? '' }) })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || 'Submission failed.')
       setSuccess(true)
@@ -187,6 +188,7 @@ export default function SponsorsPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
               <div className="field-row">
                 <div className="field">
                   <label htmlFor="businessName">Business Name <span className="req">✦</span></label>

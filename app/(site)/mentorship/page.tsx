@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID',
@@ -16,6 +16,7 @@ const INIT = {
 }
 
 export default function MentorshipPage() {
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const [form, setForm] = useState(INIT)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
   const [loading, setLoading] = useState(false)
@@ -40,7 +41,7 @@ export default function MentorshipPage() {
       const res = await fetch('/api/mentorship', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website: honeypotRef.current?.value ?? '' }),
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || 'Submission failed.')
@@ -117,6 +118,7 @@ export default function MentorshipPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate style={{ background: 'var(--cream)', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
 
               {/* Name row */}
               <div className="field-row">
