@@ -23,6 +23,7 @@ function makeLimiter(requests: number) {
 export const applyLimiter      = makeLimiter(5)
 export const mentorshipLimiter = makeLimiter(10)
 export const sponsorLimiter    = makeLimiter(10)
+export const contactLimiter    = makeLimiter(20)
 
 export async function checkRateLimit(
   limiter: Ratelimit | null,

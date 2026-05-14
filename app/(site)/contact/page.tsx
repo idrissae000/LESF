@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
-import type { Metadata } from 'next'
+import { useState, useRef, type FormEvent } from 'react'
 
 export default function ContactPage() {
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -15,7 +15,7 @@ export default function ContactPage() {
     e.preventDefault()
     setLoading(true); setError('')
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, website: honeypotRef.current?.value ?? '' }) })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || 'Submission failed.')
       setSuccess(true)
@@ -53,6 +53,7 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
               <div style={{ marginBottom: '0.5rem' }}>
                 <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.25rem' }}>Send a Message</h2>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>Contact information will be listed here soon. For now, use the form below.</p>

@@ -80,3 +80,12 @@ export const sponsorSchema = z.object({
   // honeypot
   website:       z.string().max(0, 'Bot detected').optional().default(''),
 })
+
+export const contactSchema = z.object({
+  name:    str(100),
+  email,
+  subject: str(150),
+  message: z.string().min(1).max(3000).transform(s => s.replace(/<[^>]*>/g, '').trim()),
+  // honeypot
+  website: z.string().max(0, 'Bot detected').optional().default(''),
+})

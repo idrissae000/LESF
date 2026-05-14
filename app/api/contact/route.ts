@@ -1,11 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { contactLimiter, checkRateLimit } from '@/lib/ratelimit'
+import { contactSchema } from '@/lib/schemas'
+import { checkOrigin } from '@/lib/csrf'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
+  const badOrigin = checkOrigin(request)
+  if (badOrigin) return badOrigin
+
+  const limited = await checkRateLimit(contactLimiter, request)
+  if (limited) return limited
+
   try {
-    const { name, email, subject, message } = await request.json()
+    const body = await request.json()
+    const parsed = contactSchema.safeParse(body)
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid submission. Please check your answers and try again.' }, { status: 400 })
+    }
+    const { name, email, subject, message } = parsed.data
 
     const resend = new Resend(process.env.RESEND_API_KEY)
     const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <onboarding@resend.dev>'
