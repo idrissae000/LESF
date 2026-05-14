@@ -15,7 +15,8 @@ const TEAM = [
   },
   {
     photo: '/team/heshem.jpg',
-    photoPosition: 'center 5%',
+    photoPosition: '40% 5%',
+    containerRatio: '95%',
     name: 'Heshem Tecle',
     title: 'Co-Founder, Director',
     bio: [
@@ -60,7 +61,7 @@ export default function TeamPage() {
       {/* Team cards */}
       <section style={{ background: 'var(--cream)', padding: '5rem 1.5rem' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
-          {TEAM.map(({ photo, photoPosition, name, title, bio }) => (
+          {TEAM.map(({ photo, photoPosition, containerRatio = '75%', name, title, bio }) => (
             <div
               key={name}
               style={{
@@ -72,7 +73,7 @@ export default function TeamPage() {
               }}
             >
               {/* Photo */}
-              <div style={{ position: 'relative', width: '100%', paddingBottom: '75%', overflow: 'hidden', background: 'var(--forest)' }}>
+              <div style={{ position: 'relative', width: '100%', paddingBottom: containerRatio, overflow: 'hidden', background: 'var(--forest)' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photo}
