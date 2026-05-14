@@ -9,15 +9,19 @@ import { checkOrigin } from '@/lib/csrf'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
-function getAuth() {
-  const sa = JSON.parse(
-    Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_JSON!, 'base64').toString('utf-8')
-  )
-  return new JWT({
-    email: sa.client_email,
-    key: (sa.private_key as string).replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  })
+function getAuth(): JWT | null {
+  const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON
+  if (!raw) return null
+  try {
+    const sa = JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'))
+    return new JWT({
+      email: sa.client_email,
+      key: (sa.private_key as string).replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    })
+  } catch {
+    return null
+  }
 }
 
 const HEADERS = [
@@ -189,7 +193,8 @@ export async function POST(request: NextRequest) {
       writingSampleFile.arrayBuffer().then(Buffer.from),
     ])
 
-    const auth    = getAuth()
+    const auth = getAuth()
+    if (!auth) return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 500 })
     const sheets  = google.sheets({ version: 'v4', auth })
     const sheetId = process.env.GOOGLE_SHEET_ID!
 
