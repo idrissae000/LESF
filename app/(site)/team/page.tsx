@@ -14,6 +14,18 @@ const TEAM = [
     ],
   },
   {
+    photo: '/team/heshem.jpg',
+    photoPosition: 'center center',
+    name: 'Heshem Tecle',
+    title: 'Co-Founder, Director',
+    bio: [
+      'Heshem Tecle is a Dallas, Texas–based finance and compliance professional with a strong background in accounting, regulatory analysis, and financial operations. Born and raised in Dallas, he has maintained a deep connection to his community while building a career grounded in integrity and analytical precision.',
+      'He earned his education in finance from the University of Houston, where he developed a solid understanding of financial systems, reporting, and risk management. His professional journey began at UT Southwestern Medical Center, where he worked as an accountant responsible for overseeing payroll processes, reconciling financial records, and ensuring the accuracy of critical financial documentation.',
+      'Heshem currently serves as a Compliance Analyst at State Farm, where he focuses on maintaining adherence to regulatory requirements and internal policies. In this role, he applies his financial expertise and attention to detail to support organizational compliance and operational excellence.',
+      'As a proud Eritrean American, Heshem is passionate about giving back to his community. He is committed to supporting and uplifting the next generation of professionals, with a vision of creating greater opportunities and a stronger future for those who follow.',
+    ],
+  },
+  {
     photo: '/team/matthew.jpg',
     photoPosition: 'top center',
     name: 'Meron Mesfin',
