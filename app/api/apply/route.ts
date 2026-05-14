@@ -3,6 +3,7 @@ import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { applyLimiter, checkRateLimit } from '@/lib/ratelimit'
+import { applySchema } from '@/lib/schemas'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
@@ -106,32 +107,39 @@ export async function POST(request: NextRequest) {
     const fd = await request.formData()
     const get = (k: string) => (fd.get(k) as string | null) ?? ''
 
-    const firstName         = get('firstName')
-    const lastName          = get('lastName')
-    const email             = get('email')
-    const phone             = get('phone')
-    const address           = get('address')
-    const city              = get('city')
-    const state             = get('state')
-    const zip               = get('zip')
-    const schoolName        = get('schoolName')
-    const gradeLevel        = get('gradeLevel')
-    const major             = get('major')
-    const gpa               = get('gpa')
-    const graduationYear    = get('graduationYear')
-    const essay1            = get('essay1')
-    const essay2            = get('essay2')
-    const extracurriculars  = get('extracurriculars')
-    const volunteerWork     = get('volunteerWork')
-    const ref1Name   = get('ref1Name');  const ref1Title = get('ref1Title')
-    const ref1Email  = get('ref1Email'); const ref1Phone = get('ref1Phone')
-    const ref2Name   = get('ref2Name');  const ref2Title = get('ref2Title')
-    const ref2Email  = get('ref2Email'); const ref2Phone = get('ref2Phone')
-    const householdParents  = get('householdParents')
-    const siblings          = get('siblings')
-    const currentlyWorks    = get('currentlyWorks')
-    const parentOccupations = get('parentOccupations')
-    const attendEvent       = get('attendEvent')
+    // Validate and sanitize all text fields
+    const parsed = applySchema.safeParse({
+      firstName: get('firstName'), lastName: get('lastName'),
+      email: get('email'), phone: get('phone'),
+      address: get('address'), city: get('city'), state: get('state'), zip: get('zip'),
+      eligibility: get('eligibility'),
+      schoolName: get('schoolName'), gradeLevel: get('gradeLevel'),
+      major: get('major'), gpa: get('gpa'), graduationYear: get('graduationYear'),
+      essay1: get('essay1'), essay2: get('essay2'),
+      attendEvent: get('attendEvent'),
+      extracurriculars: get('extracurriculars'), volunteerWork: get('volunteerWork'),
+      ref1Name: get('ref1Name'), ref1Title: get('ref1Title'),
+      ref1Email: get('ref1Email'), ref1Phone: get('ref1Phone'),
+      ref2Name: get('ref2Name'), ref2Title: get('ref2Title'),
+      ref2Email: get('ref2Email'), ref2Phone: get('ref2Phone'),
+      householdParents: get('householdParents'), siblings: get('siblings'),
+      currentlyWorks: get('currentlyWorks'), parentOccupations: get('parentOccupations'),
+      certify: get('certify'), website: get('website'),
+    })
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid submission. Please check your answers and try again.' }, { status: 400 })
+    }
+    const d = parsed.data
+
+    const {
+      firstName, lastName, email, phone, address, city, state, zip,
+      schoolName, gradeLevel, major, gpa, graduationYear,
+      essay1, essay2, attendEvent,
+      extracurriculars, volunteerWork,
+      ref1Name, ref1Title, ref1Email, ref1Phone,
+      ref2Name, ref2Title, ref2Email, ref2Phone,
+      householdParents, siblings, currentlyWorks, parentOccupations,
+    } = d
 
     const transcriptFile    = fd.get('transcript')    as File | null
     const resumeFile        = fd.get('resume')        as File | null

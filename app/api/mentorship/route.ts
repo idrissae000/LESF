@@ -3,6 +3,7 @@ import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { mentorshipLimiter, checkRateLimit } from '@/lib/ratelimit'
+import { mentorshipSchema } from '@/lib/schemas'
 
 export const dynamic = 'force-dynamic'
 
@@ -79,16 +80,15 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
+    const parsed = mentorshipSchema.safeParse(body)
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid submission. Please check your answers and try again.' }, { status: 400 })
+    }
     const {
       firstName, lastName, city, state,
       profession, employer, degree, university,
       contactMethod, email, phone, linkedin,
-    } = body
-
-    if (!firstName || !lastName || !city || !state || !profession ||
-        !employer || !degree || !university || !contactMethod || !email || !phone) {
-      return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
-    }
+    } = parsed.data
 
     const auth   = getAuth()
     const sheets = google.sheets({ version: 'v4', auth })
