@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
+import { mentorshipLimiter, checkRateLimit } from '@/lib/ratelimit'
 
 export const dynamic = 'force-dynamic'
 
@@ -73,6 +74,9 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
 }
 
 export async function POST(request: NextRequest) {
+  const limited = await checkRateLimit(mentorshipLimiter, request)
+  if (limited) return limited
+
   try {
     const body = await request.json()
     const {

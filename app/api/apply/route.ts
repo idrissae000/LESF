@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
+import { applyLimiter, checkRateLimit } from '@/lib/ratelimit'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
@@ -98,6 +99,9 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
 }
 
 export async function POST(request: NextRequest) {
+  const limited = await checkRateLimit(applyLimiter, request)
+  if (limited) return limited
+
   try {
     const fd = await request.formData()
     const get = (k: string) => (fd.get(k) as string | null) ?? ''
