@@ -27,6 +27,7 @@ const HEADERS = [
   'Ref 1 Name', 'Ref 1 Title', 'Ref 1 Email', 'Ref 1 Phone',
   'Ref 2 Name', 'Ref 2 Title', 'Ref 2 Email', 'Ref 2 Phone',
   'Lives With Both Parents', 'Number of Siblings', 'Currently Works', 'Parent Occupations',
+  'Plans to Attend Event',
   'Eligibility Confirmed', 'Certified Accurate', 'Status',
 ]
 
@@ -126,6 +127,7 @@ export async function POST(request: NextRequest) {
     const siblings          = get('siblings')
     const currentlyWorks    = get('currentlyWorks')
     const parentOccupations = get('parentOccupations')
+    const attendEvent       = get('attendEvent')
 
     const transcriptFile    = fd.get('transcript')    as File | null
     const resumeFile        = fd.get('resume')        as File | null
@@ -163,6 +165,7 @@ export async function POST(request: NextRequest) {
           ref1Name, ref1Title, ref1Email, ref1Phone,
           ref2Name, ref2Title, ref2Email, ref2Phone,
           householdParents, siblings, currentlyWorks, parentOccupations,
+          attendEvent,
           'Yes', 'Yes', 'Submitted',
         ]],
       },
@@ -186,6 +189,7 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:6px 0;color:#6b6b6b">Email</td><td style="padding:6px 0">${email}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Phone</td><td style="padding:6px 0">${phone}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Plans to Attend Event</td><td style="padding:6px 0">${attendEvent}</td></tr>
 </table>
 
 <h2 style="color:#1a3328;margin-top:28px">Education</h2>

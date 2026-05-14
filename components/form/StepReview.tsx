@@ -6,7 +6,7 @@ interface Props {
   errors: Record<string, boolean>
   loading: boolean
   submitError: string
-  onChange: (name: keyof FormFields, value: boolean) => void
+  onChange: (name: keyof FormFields, value: string | boolean) => void
   onBack: () => void
   onSubmit: () => void
 }
@@ -39,6 +39,31 @@ export default function StepReview({
             Writing Sample: {files.writingSample?.name ?? '—'}
           </div>
         </div>
+      </div>
+
+      <div className="field" style={{ marginBottom: '0.25rem' }}>
+        <label style={{ marginBottom: '0.6rem', display: 'block' }}>
+          <strong>Award Ceremony <span className="req">✦</span></strong><br />
+          <span style={{ fontWeight: 400 }}>Do you plan to attend the award ceremony on August 1, 2026 in Dallas, TX?</span>
+        </label>
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+          {(['Yes', 'No', 'Unsure'] as const).map(opt => (
+            <label key={opt} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.92rem', fontWeight: 400 }}>
+              <input
+                type="radio"
+                name="attendEvent"
+                value={opt}
+                checked={fields.attendEvent === opt}
+                onChange={() => onChange('attendEvent', opt)}
+                style={{ accentColor: 'var(--forest)', width: '16px', height: '16px' }}
+              />
+              {opt}
+            </label>
+          ))}
+        </div>
+        {errors.attendEvent && (
+          <span className="field-error" style={{ display: 'block', marginTop: '0.4rem' }}>Please select an answer.</span>
+        )}
       </div>
 
       <div className="checkbox-field">

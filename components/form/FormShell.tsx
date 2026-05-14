@@ -51,6 +51,7 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
   }
 
   if (step === 6) {
+    if (!fields.attendEvent) errs.attendEvent = true
     if (!fields.certify) errs.certify = true
   }
 
