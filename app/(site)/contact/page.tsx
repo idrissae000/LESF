@@ -54,10 +54,7 @@ export default function ContactPage() {
           ) : (
             <form onSubmit={handleSubmit} style={{ background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
-              <div style={{ marginBottom: '0.5rem' }}>
-                <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.25rem' }}>Send a Message</h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>Contact information will be listed here soon. For now, use the form below.</p>
-              </div>
+              <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.25rem' }}>Send a Message</h2>
               <div className="field-row">
                 <div className="field">
                   <label htmlFor="ct-name">Your Name <span className="req">✦</span></label>
