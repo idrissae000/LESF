@@ -4,6 +4,7 @@ import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { mentorshipLimiter, checkRateLimit } from '@/lib/ratelimit'
 import { mentorshipSchema } from '@/lib/schemas'
+import { checkOrigin } from '@/lib/csrf'
 
 export const dynamic = 'force-dynamic'
 
@@ -75,6 +76,9 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
 }
 
 export async function POST(request: NextRequest) {
+  const badOrigin = checkOrigin(request)
+  if (badOrigin) return badOrigin
+
   const limited = await checkRateLimit(mentorshipLimiter, request)
   if (limited) return limited
 

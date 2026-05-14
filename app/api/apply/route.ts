@@ -4,6 +4,7 @@ import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { applyLimiter, checkRateLimit } from '@/lib/ratelimit'
 import { applySchema } from '@/lib/schemas'
+import { checkOrigin } from '@/lib/csrf'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
@@ -102,6 +103,9 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
 const MAX_PAYLOAD_BYTES = 30 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
+  const badOrigin = checkOrigin(request)
+  if (badOrigin) return badOrigin
+
   const limited = await checkRateLimit(applyLimiter, request)
   if (limited) return limited
 
