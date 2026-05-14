@@ -12,7 +12,7 @@ const US_STATES = [
 const INIT = {
   firstName: '', lastName: '', city: '', state: '',
   profession: '', employer: '', degree: '', university: '',
-  contactMethod: '', email: '', linkedin: '',
+  contactMethod: '', email: '', phone: '', linkedin: '',
 }
 
 export default function MentorshipPage() {
@@ -30,7 +30,7 @@ export default function MentorshipPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     const errs: Record<string, boolean> = {}
-    const req = ['firstName','lastName','city','state','profession','employer','degree','university','contactMethod','email']
+    const req = ['firstName','lastName','city','state','profession','employer','degree','university','contactMethod','email','phone']
     req.forEach(k => { if (!form[k as keyof typeof form].trim()) errs[k] = true })
     if (form.email && !/\S+@\S+\.\S+/.test(form.email)) errs.email = true
     if (Object.keys(errs).length) { setErrors(errs); return }
@@ -232,7 +232,7 @@ export default function MentorshipPage() {
                 {errors.contactMethod && <span className="field-error">Required.</span>}
               </div>
 
-              {/* Email / LinkedIn */}
+              {/* Email / Phone */}
               <div className="field-row">
                 <div className="field">
                   <label htmlFor="mt-email">Email Address <span className="req">✦</span></label>
@@ -245,13 +245,25 @@ export default function MentorshipPage() {
                   {errors.email && <span className="field-error">Valid email required.</span>}
                 </div>
                 <div className="field">
-                  <label htmlFor="mt-linkedin">LinkedIn Profile URL</label>
+                  <label htmlFor="mt-phone">Phone Number <span className="req">✦</span></label>
                   <input
-                    type="url" id="mt-linkedin" value={form.linkedin}
-                    onChange={e => set('linkedin', e.target.value)}
-                    placeholder="https://linkedin.com/in/jane"
+                    type="tel" id="mt-phone" value={form.phone}
+                    onChange={e => set('phone', e.target.value)}
+                    className={errors.phone ? 'invalid' : ''}
+                    placeholder="(555) 000-0000"
                   />
+                  {errors.phone && <span className="field-error">Required.</span>}
                 </div>
+              </div>
+
+              {/* LinkedIn */}
+              <div className="field">
+                <label htmlFor="mt-linkedin">LinkedIn Profile URL</label>
+                <input
+                  type="url" id="mt-linkedin" value={form.linkedin}
+                  onChange={e => set('linkedin', e.target.value)}
+                  placeholder="https://linkedin.com/in/jane"
+                />
               </div>
 
               {submitError && (

@@ -19,7 +19,7 @@ function getAuth() {
 const HEADERS = [
   'Submitted At', 'First Name', 'Last Name', 'City', 'State',
   'Profession', 'Employer', 'Degree', 'University/Institution',
-  'Best Method of Contact', 'Email Address', 'LinkedIn',
+  'Best Method of Contact', 'Email Address', 'Phone Number', 'LinkedIn',
 ]
 
 async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadsheetId: string) {
@@ -78,11 +78,11 @@ export async function POST(request: NextRequest) {
     const {
       firstName, lastName, city, state,
       profession, employer, degree, university,
-      contactMethod, email, linkedin,
+      contactMethod, email, phone, linkedin,
     } = body
 
     if (!firstName || !lastName || !city || !state || !profession ||
-        !employer || !degree || !university || !contactMethod || !email) {
+        !employer || !degree || !university || !contactMethod || !email || !phone) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
     }
 
@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
           new Date().toISOString(),
           firstName, lastName, city, state,
           profession, employer, degree, university,
-          contactMethod, email, linkedin || '',
+          contactMethod, email, phone, linkedin || '',
         ]],
       },
     })
@@ -124,6 +124,7 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:7px 0;color:#6b6b6b">University / Institution</td><td style="padding:7px 0">${university}</td></tr>
   <tr><td style="padding:7px 0;color:#6b6b6b">Best Contact Method</td><td style="padding:7px 0">${contactMethod}</td></tr>
   <tr><td style="padding:7px 0;color:#6b6b6b">Email</td><td style="padding:7px 0">${email}</td></tr>
+  <tr><td style="padding:7px 0;color:#6b6b6b">Phone</td><td style="padding:7px 0">${phone}</td></tr>
   <tr><td style="padding:7px 0;color:#6b6b6b">LinkedIn</td><td style="padding:7px 0">${linkedin || '—'}</td></tr>
 </table>
 </body></html>`,
