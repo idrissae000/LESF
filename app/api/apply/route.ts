@@ -99,9 +99,17 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
   await formatSheet(sheets, spreadsheetId)
 }
 
+const MAX_PAYLOAD_BYTES = 30 * 1024 * 1024
+
 export async function POST(request: NextRequest) {
   const limited = await checkRateLimit(applyLimiter, request)
   if (limited) return limited
+
+  // Hard cap on total payload before buffering
+  const contentLength = Number(request.headers.get('content-length') ?? 0)
+  if (contentLength > MAX_PAYLOAD_BYTES) {
+    return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 413 })
+  }
 
   try {
     const fd = await request.formData()
