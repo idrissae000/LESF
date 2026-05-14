@@ -3,7 +3,6 @@ import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { sponsorLimiter, checkRateLimit } from '@/lib/ratelimit'
-import { sponsorSchema } from '@/lib/schemas'
 import { checkOrigin } from '@/lib/csrf'
 
 export const dynamic = 'force-dynamic'
@@ -87,11 +86,18 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
-    const parsed = sponsorSchema.safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json({ error: 'Invalid submission. Please check your answers and try again.' }, { status: 400 })
+    const san = (v: unknown) => (typeof v === 'string' ? v.replace(/<[^>]*>/g, '').trim() : '')
+
+    if (san(body.website)) {
+      return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 400 })
     }
-    const { businessName, contactName, email, phone, tier, message } = parsed.data
+
+    const businessName = san(body.businessName)
+    const contactName  = san(body.contactName)
+    const email        = san(body.email)
+    const phone        = san(body.phone)
+    const tier         = san(body.tier)
+    const message      = san(body.message)
 
     const auth = getAuth()
     if (!auth) return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 500 })

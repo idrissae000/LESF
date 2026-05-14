@@ -3,7 +3,6 @@ import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { Resend } from 'resend'
 import { mentorshipLimiter, checkRateLimit } from '@/lib/ratelimit'
-import { mentorshipSchema } from '@/lib/schemas'
 import { checkOrigin } from '@/lib/csrf'
 
 export const dynamic = 'force-dynamic'
@@ -88,15 +87,24 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
-    const parsed = mentorshipSchema.safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json({ error: 'Invalid submission. Please check your answers and try again.' }, { status: 400 })
+    const san = (v: unknown) => (typeof v === 'string' ? v.replace(/<[^>]*>/g, '').trim() : '')
+
+    if (san(body.website)) {
+      return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 400 })
     }
-    const {
-      firstName, lastName, city, state,
-      profession, employer, degree, university,
-      contactMethod, email, phone, linkedin,
-    } = parsed.data
+
+    const firstName     = san(body.firstName)
+    const lastName      = san(body.lastName)
+    const city          = san(body.city)
+    const state         = san(body.state)
+    const profession    = san(body.profession)
+    const employer      = san(body.employer)
+    const degree        = san(body.degree)
+    const university    = san(body.university)
+    const contactMethod = san(body.contactMethod)
+    const email         = san(body.email)
+    const phone         = san(body.phone)
+    const linkedin      = san(body.linkedin)
 
     const auth = getAuth()
     if (!auth) return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 500 })
