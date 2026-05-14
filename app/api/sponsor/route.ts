@@ -128,7 +128,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (err: unknown) {
     console.error('Sponsor API error:', err)
-    const message = err instanceof Error ? err.message : 'An unexpected error occurred.'
-    return NextResponse.json({ error: message }, { status: 500 })
+    return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 500 })
   }
 }
