@@ -16,7 +16,6 @@ const TEAM = [
   {
     photo: '/team/heshem.jpg',
     photoPosition: '40% 5%',
-    containerRatio: '95%',
     name: 'Heshem Tecle',
     title: 'Co-Founder, Director',
     bio: [
