@@ -16,7 +16,7 @@ export default function HomePage() {
               A scholarship<br />born from our<br /><em style={{ color: 'var(--gold-light)', fontStyle: 'italic' }}>community.</em>
             </h1>
             <p data-hero-item style={{ color: 'rgba(255,255,255,0.68)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2rem', maxWidth: '420px' }}>
-              The Eritrean Scholars Fund awards a $3,000 scholarship to a deserving Eritrean-American undergraduate student each year.
+              The Eritrean Scholars Fund awards a $3,000 scholarship to a deserving North American Eritrean undergraduate student each year.
             </p>
             <div data-hero-item style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link href="/apply" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.85rem 2rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.88rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -36,7 +36,7 @@ export default function HomePage() {
               ['Recipients', '1 student'],
               ['Open', 'May 15 – July 15'],
               ['Announced', 'August 2, 2026'],
-              ['Eligibility', 'Eritrean-American undergrads'],
+              ['Eligibility', 'North American Eritrean undergrads'],
             ].map(([label, value]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.7rem 0', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                 <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}>{label}</span>
@@ -59,7 +59,7 @@ export default function HomePage() {
               The Eritrean community in Dallas has always taken care of its own — through family, through faith, through showing up. This scholarship is another way of showing up. It was created by community members who wanted to invest in the next generation not just with words, but with real support.
             </p>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.9, fontSize: '1rem', maxWidth: '640px' }}>
-              If you&apos;re an Eritrean-American student working hard toward your degree, this fund was made for you.
+              If you&apos;re an North American Eritrean student working hard toward your degree, this fund was made for you.
             </p>
           </div>
         </ScrollReveal>
@@ -100,7 +100,7 @@ export default function HomePage() {
                 The Giveback Kickback
               </h2>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.5rem', fontSize: '0.97rem' }}>
-                A community event in Dallas bringing together 250+ attendees to celebrate Eritrean-American excellence. The scholarship winner will be announced live at the event.
+                A community event in Dallas bringing together 250+ attendees to celebrate North American Eritrean excellence. The scholarship winner will be announced live at the event.
               </p>
               <Link href="/event" style={{ color: 'var(--forest)', fontWeight: 600, fontSize: '0.88rem', textDecoration: 'none', letterSpacing: '0.04em', borderBottom: '1px solid var(--gold)', paddingBottom: '1px' }}>
                 Event details →
@@ -132,7 +132,7 @@ export default function HomePage() {
                 Want to give back?<br />Become a mentor.
               </h2>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.75rem', fontSize: '0.97rem', maxWidth: '420px' }}>
-                Mentors are paired with Eritrean-American students to offer guidance, share their professional experience, and invest in the next generation of our community. Your story matters too.
+                Mentors are paired with North American Eritrean students to offer guidance, share their professional experience, and invest in the next generation of our community. Your story matters too.
               </p>
               <Link href="/mentorship" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--forest)', color: 'white', fontWeight: 600, padding: '0.85rem 2rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.88rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 Apply to Mentor →
@@ -140,7 +140,7 @@ export default function HomePage() {
             </div>
             <div style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: '4px', padding: '2rem', borderLeft: '4px solid var(--gold)' }}>
               <p style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.3rem', color: 'var(--forest)', lineHeight: 1.65, fontStyle: 'italic', marginBottom: '1.25rem' }}>
-                &ldquo;The most meaningful thing I can do is help a young Eritrean-American see what&apos;s possible — because someone did that for me.&rdquo;
+                &ldquo;The most meaningful thing I can do is help a young North American Eritrean see what&apos;s possible — because someone did that for me.&rdquo;
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                 {['Share your professional journey', 'Open doors and make introductions', 'Meet monthly — on your schedule'].map(item => (

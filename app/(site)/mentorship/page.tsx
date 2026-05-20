@@ -65,7 +65,7 @@ export default function MentorshipPage() {
             Become a Mentor
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75 }}>
-            Mentors are paired with Eritrean-American students to provide guidance, professional advice, and community connection. Your experience can change a student's trajectory.
+            Mentors are paired with North American Eritrean students to provide guidance, professional advice, and community connection. Your experience can change a student's trajectory.
           </p>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default function MentorshipPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1.25rem' }}>
             {[
               { icon: '🧭', title: 'Career Guidance', body: 'Help students understand their field, navigate early career decisions, and set meaningful goals.' },
-              { icon: '🤝', title: 'Community Connection', body: 'Strengthen the Eritrean-American community by building bridges between generations.' },
+              { icon: '🤝', title: 'Community Connection', body: 'Strengthen the North American Eritrean community by building bridges between generations.' },
               { icon: '💡', title: 'Professional Insight', body: 'Share lessons from your own journey — the things you wish someone had told you.' },
               { icon: '📅', title: 'Flexible Commitment', body: 'Mentorship is shaped around your schedule. Even a few conversations can make a lasting difference.' },
             ].map(({ icon, title, body }) => (

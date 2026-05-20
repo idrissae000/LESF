@@ -48,7 +48,7 @@ export default function EventPage() {
             We are hosting a high-energy social event on August 1, 2026, designed to bring together community members, professionals, and supporters for a meaningful cause. The Giveback Kickback aims to connect young Eritreans — young and old — to gather together for a higher purpose.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.97rem' }}>
-            The event will culminate in the awarding of a $3,000 scholarship to a deserving Eritrean-American community member in North America — with the winner announced on August 2, 2026.
+            The event will culminate in the awarding of a $3,000 scholarship to a deserving North American Eritrean community member in North America — with the winner announced on August 2, 2026.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
             We anticipate hosting at least 250 people at the event, and our marketing and social media reach will extend to thousands of community members across North America.
@@ -65,9 +65,9 @@ export default function EventPage() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1.5rem' }}>
             {[
-              { icon: '🎉', title: 'Community Celebration', body: 'A vibrant gathering of Eritrean-Americans from Dallas and beyond, celebrating culture and togetherness.' },
+              { icon: '🎉', title: 'Community Celebration', body: 'A vibrant gathering of North American Eritreans from Dallas and beyond, celebrating culture and togetherness.' },
               { icon: '🏆', title: 'Scholarship Award', body: 'One deserving student will be awarded a $3,000 scholarship live at the event on August 1.' },
-              { icon: '🤝', title: 'Networking', body: 'Connect with professionals, community leaders, sponsors, and fellow Eritrean-Americans.' },
+              { icon: '🤝', title: 'Networking', body: 'Connect with professionals, community leaders, sponsors, and fellow North American Eritreans.' },
               { icon: '📢', title: 'Wide Reach', body: 'Marketing and social media will amplify the event to thousands of community members across North America.' },
             ].map(({ icon, title, body }) => (
               <div key={title} className="card-lift" style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.75rem', borderTop: '3px solid var(--gold)' }}>

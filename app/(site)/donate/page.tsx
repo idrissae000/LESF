@@ -15,7 +15,7 @@ export default function DonatePage() {
             Support the Fund
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.7 }}>
-            Your donation directly supports a deserving Eritrean-American student's education and future.
+            Your donation directly supports a deserving North American Eritrean student's education and future.
           </p>
         </div>
       </section>
@@ -31,14 +31,14 @@ export default function DonatePage() {
             The Eritrean Scholars Fund is a 501(c)(3) non-profit organization. All donations are tax deductible and go directly toward funding the scholarship award.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
-            Community donations — large and small — are what make this scholarship possible. By contributing, you're investing in the education of a promising young Eritrean-American and strengthening our community for generations to come.
+            Community donations — large and small — are what make this scholarship possible. By contributing, you're investing in the education of a promising young North American Eritrean and strengthening our community for generations to come.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1.25rem', marginTop: '3rem' }}>
             {[
               { icon: '🎓', title: 'Fund the Scholarship', body: 'Donations go directly toward the $3,000 annual scholarship award.' },
               { icon: '🏛️', title: '501(c)(3) Tax Deductible', body: 'We are a registered non-profit. Your donation qualifies as a tax deduction.' },
-              { icon: '🌍', title: 'Strengthen Our Community', body: 'Investing in education lifts the entire Eritrean-American community.' },
+              { icon: '🌍', title: 'Strengthen Our Community', body: 'Investing in education lifts the entire North American Eritrean community.' },
             ].map(({ icon, title, body }) => (
               <div key={title} className="card-lift" style={{ background: 'white', border: '1px solid var(--border)', borderTop: '3px solid var(--gold)', borderRadius: '4px', padding: '1.5rem' }}>
                 <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{icon}</div>

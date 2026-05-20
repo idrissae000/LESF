@@ -52,7 +52,7 @@ export default function TeamPage() {
             Meet Our Team
           </h1>
           <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75 }}>
-            The Eritrean Scholars Fund was founded by two Dallas-area Eritrean-Americans who believe that community investment starts with education. They built this fund to make that belief real.
+            The Eritrean Scholars Fund was founded by two Dallas-area North American Eritreans who believe that community investment starts with education. They built this fund to make that belief real.
           </p>
         </div>
       </section>

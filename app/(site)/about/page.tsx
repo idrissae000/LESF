@@ -17,7 +17,7 @@ const req = (text: string) => text
 const ELIGIBILITY = [
   req('Currently enrolled as an undergraduate student'),
   req('21 years of age or older'),
-  req('Identifies as Eritrean-American'),
+  req('Identifies as North American Eritrean'),
   req('All majors and fields of study are welcome'),
 ]
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
             This Fund was founded by members of the Eritrean community in Dallas in order to support young college students achieve their dreams. We believe that investing in education is one of the most powerful ways to strengthen and uplift our community.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
-            The Eritrean Scholars Fund is proud to present its first annual scholarship — a $3,000 award given to one deserving Eritrean-American undergraduate student. Our mission is to provide meaningful financial support and encouragement, recognizing the hard work and potential of our community's rising generation.
+            The Eritrean Scholars Fund is proud to present its first annual scholarship — a $3,000 award given to one deserving North American Eritrean undergraduate student. Our mission is to provide meaningful financial support and encouragement, recognizing the hard work and potential of our community's rising generation.
           </p>
         </div>
       </section>

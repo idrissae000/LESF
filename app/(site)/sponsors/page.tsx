@@ -123,7 +123,7 @@ export default function SponsorsPage() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '1.25rem' }}>
             {[
-              { icon: '🎓', title: 'Support Education', body: 'Directly fund a $3,000 scholarship for a deserving Eritrean-American student.' },
+              { icon: '🎓', title: 'Support Education', body: 'Directly fund a $3,000 scholarship for a deserving North American Eritrean student.' },
               { icon: '📣', title: 'Brand Exposure', body: 'Reach 250+ event attendees and thousands through our marketing and social media.' },
               { icon: '🤝', title: 'Social Responsibility', body: 'Enhance your brand profile through meaningful community involvement.' },
               { icon: '💼', title: 'Tax Benefits', body: 'Qualifies as a 501(c)(3) charitable donation and as a business expense for federal taxes.' },

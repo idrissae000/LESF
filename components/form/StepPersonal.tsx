@@ -145,7 +145,7 @@ export default function StepPersonal({ fields, errors, onChange, onNext }: Props
         />
         <label htmlFor="eligibility">
           <strong>Eligibility Confirmation <span className="req">✦</span></strong>
-          I confirm that I am currently enrolled as an undergraduate student, am 21 years of age or older, and identify as Eritrean-American. I understand this scholarship is open to all majors.
+          I confirm that I am currently enrolled as an undergraduate student, am 21 years of age or older, and identify as North American Eritrean. I understand this scholarship is open to all majors.
         </label>
       </div>
       {errors.eligibility && (
