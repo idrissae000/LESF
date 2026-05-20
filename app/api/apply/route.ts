@@ -230,7 +230,7 @@ export async function POST(request: NextRequest) {
 
     const adminSend = await resend.emails.send({
       from,
-      to: 'ob.alkhaffaf@gmail.com',
+      to: 'eddytecle@gmail.com',
       subject: `New Application — ${firstName} ${lastName}`,
       html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Scholarship Application</h1>
@@ -293,7 +293,7 @@ export async function POST(request: NextRequest) {
           <h2>Thank you for applying, ${firstName}!</h2>
           <p>We have received your application for the Eritrean Scholars Fund scholarship.</p>
           <p>Winners will be announced on <strong>August 2, 2025</strong>.</p>
-          <p>Questions? Email <a href="mailto:ob.alkhaffaf@gmail.com">ob.alkhaffaf@gmail.com</a>.</p>
+          <p>Questions? Email <a href="mailto:eddytecle@gmail.com">eddytecle@gmail.com</a>.</p>
         `,
     })
 
