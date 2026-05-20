@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
 
     await resend.emails.send({
       from,
-      to: 'eddytecle@gmail.com',
+      to: 'ob.alkhaffaf@gmail.com',
       subject: `Sponsorship Inquiry — ${businessName} — ${tier}`,
       html: `
         <h2>New Sponsorship Inquiry</h2>
