@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
     await Promise.all([
       resend.emails.send({
         from,
-        to: 'ob.alkhaffaf@gmail.com',
+        to: 'eddytecle@gmail.com',
         subject: `New Mentor Application — ${firstName} ${lastName}`,
         html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Mentor Application</h1>
@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
 <p>Hi ${firstName},</p>
 <p>Thank you for applying to be a mentor with the Eritrean Scholars Fund. We'll review your application and be in touch soon.</p>
 <p>We're grateful for your willingness to give back and invest in the next generation of our community.</p>
-<p style="color:#6b6b6b;font-size:13px;margin-top:32px">Questions? Reply to this email or contact us at <a href="mailto:ob.alkhaffaf@gmail.com">ob.alkhaffaf@gmail.com</a>.</p>
+<p style="color:#6b6b6b;font-size:13px;margin-top:32px">Questions? Reply to this email or contact us at <a href="mailto:eddytecle@gmail.com">eddytecle@gmail.com</a>.</p>
 </body></html>`,
       }),
     ])
