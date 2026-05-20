@@ -13,8 +13,6 @@ export interface FormFields {
   major: string
   gpa: string
   graduationYear: string
-  essay1: string
-  essay2: string
   extracurriculars: string
   volunteerWork: string
   ref1Name: string
@@ -34,6 +32,8 @@ export interface FormFields {
 }
 
 export interface UploadedFiles {
+  essay1?: File
+  essay2?: File
   transcript?: File
   resume?: File
   writingSample?: File
@@ -44,7 +44,6 @@ export const INIT_FIELDS: FormFields = {
   address: '', city: '', state: '', zip: '',
   eligibility: false,
   schoolName: '', gradeLevel: '', major: '', gpa: '', graduationYear: '',
-  essay1: '', essay2: '',
   extracurriculars: '', volunteerWork: '',
   ref1Name: '', ref1Title: '', ref1Email: '', ref1Phone: '',
   ref2Name: '', ref2Title: '', ref2Email: '', ref2Phone: '',

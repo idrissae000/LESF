@@ -1,77 +1,98 @@
-import type { FormFields } from './types'
-
-function wordCount(text: string) {
-  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length
-}
+import { useRef, useState } from 'react'
+import type { UploadedFiles } from './types'
 
 interface Props {
-  fields: Pick<FormFields, 'essay1' | 'essay2'>
+  files: UploadedFiles
   errors: Record<string, boolean>
-  onChange: (name: keyof FormFields, value: string) => void
+  onFile: (name: keyof UploadedFiles, file: File) => void
   onBack: () => void
   onNext: () => void
 }
 
-export default function StepEssays({ fields, errors, onChange, onBack, onNext }: Props) {
-  const wc1 = wordCount(fields.essay1)
-  const wc2 = wordCount(fields.essay2)
+interface UploadAreaProps {
+  name: keyof UploadedFiles
+  label: string
+  prompt: string
+  file: File | undefined
+  error: boolean
+  onFile: (name: keyof UploadedFiles, file: File) => void
+}
 
+function UploadArea({ name, label, prompt, file, error, onFile }: UploadAreaProps) {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [dragOver, setDragOver] = useState(false)
+
+  function handleFile(f: File) {
+    if (f.type !== 'application/pdf') return
+    if (f.size > 10 * 1024 * 1024) return
+    onFile(name, f)
+  }
+
+  return (
+    <div className="field" style={{ marginBottom: '1.75rem' }}>
+      <label>{label} <span className="req">✦</span></label>
+      <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.75rem', lineHeight: 1.55 }}>
+        {prompt}
+      </p>
+      <div
+        className={`file-upload-area${dragOver ? ' dragover' : ''}`}
+        onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={e => {
+          e.preventDefault()
+          setDragOver(false)
+          const f = e.dataTransfer.files[0]
+          if (f) handleFile(f)
+        }}
+        onClick={() => inputRef.current?.click()}
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".pdf"
+          style={{ display: 'none' }}
+          onChange={e => {
+            const f = e.target.files?.[0]
+            if (f) handleFile(f)
+          }}
+        />
+        <div className="file-upload-icon">📝</div>
+        <p><strong>Click to upload</strong> or drag and drop</p>
+        <p>PDF only · Max 10 MB</p>
+        {file && <div className="file-name">✓ {file.name}</div>}
+      </div>
+      {error && <span className="field-error">Please upload your essay as a PDF.</span>}
+    </div>
+  )
+}
+
+export default function StepEssays({ files, errors, onFile, onBack, onNext }: Props) {
   return (
     <div className="form-section">
       <div className="section-head">
-        <h2>Written Questions</h2>
-        <p>Please answer both questions thoughtfully. Each response should be 200–250 words.</p>
+        <h2>Essay Questions</h2>
+        <p>Write your responses separately and upload each as a PDF. Max 10 MB per file.</p>
       </div>
 
-      <div className="inset">
-        <strong>Guidelines:</strong> Write in your own words. Responses should be between 200 and
-        250 words each. Aim for clarity, authenticity, and specificity over formality.
-      </div>
-
-      <div className="field">
-        <label htmlFor="essay1">
-          Question 1 <span className="req">✦</span>
-          <span className="hint">— 200–250 words</span>
-        </label>
-        <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.6rem', lineHeight: 1.55 }}>
-          Describe what you think it means to be a leader and what it takes to develop leadership qualities.
-        </p>
-        <textarea
-          id="essay1"
-          value={fields.essay1}
-          onChange={e => onChange('essay1', e.target.value)}
-          className={`essay${errors.essay1 ? ' invalid' : ''}`}
-          placeholder="Your response here..."
-        />
-        <div className={`word-count${wc1 > 250 ? ' warn' : wc1 >= 200 ? ' ok' : ''}`}>
-          {wc1} / 250 words
-        </div>
-        {errors.essay1 && <span className="field-error">Please write between 200 and 250 words.</span>}
-      </div>
+      <UploadArea
+        name="essay1"
+        label="Leadership Essay"
+        prompt="Describe what you think it means to be a leader and what it takes to develop leadership qualities."
+        file={files.essay1}
+        error={!!errors.essay1}
+        onFile={onFile}
+      />
 
       <hr className="divider" />
 
-      <div className="field">
-        <label htmlFor="essay2">
-          Question 2 <span className="req">✦</span>
-          <span className="hint">— 200–250 words</span>
-        </label>
-        <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.6rem', lineHeight: 1.55 }}>
-          What does being Eritrean mean to you and how will you use the skills you develop in school
-          to contribute to your community?
-        </p>
-        <textarea
-          id="essay2"
-          value={fields.essay2}
-          onChange={e => onChange('essay2', e.target.value)}
-          className={`essay${errors.essay2 ? ' invalid' : ''}`}
-          placeholder="Your response here..."
-        />
-        <div className={`word-count${wc2 > 250 ? ' warn' : wc2 >= 200 ? ' ok' : ''}`}>
-          {wc2} / 250 words
-        </div>
-        {errors.essay2 && <span className="field-error">Please write between 200 and 250 words.</span>}
-      </div>
+      <UploadArea
+        name="essay2"
+        label="Community Essay"
+        prompt="What does being Eritrean mean to you and how will you use the skills you develop in school to contribute to your community?"
+        file={files.essay2}
+        error={!!errors.essay2}
+        onFile={onFile}
+      />
 
       <div className="nav-buttons">
         <button type="button" className="btn btn-outline" onClick={onBack}>← Back</button>

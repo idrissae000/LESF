@@ -11,10 +11,6 @@ import StepReview from './StepReview'
 
 const STEP_LABELS = ['Personal', 'Education', 'Essays', 'Uploads', 'Optional', 'Review']
 
-function wordCount(text: string) {
-  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length
-}
-
 function validate(step: number, fields: FormFields, files: UploadedFiles): Record<string, boolean> {
   const errs: Record<string, boolean> = {}
 
@@ -40,8 +36,8 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
   }
 
   if (step === 3) {
-    if (wordCount(fields.essay1) < 200 || wordCount(fields.essay1) > 250) errs.essay1 = true
-    if (wordCount(fields.essay2) < 200 || wordCount(fields.essay2) > 250) errs.essay2 = true
+    if (!files.essay1) errs.essay1 = true
+    if (!files.essay2) errs.essay2 = true
   }
 
   if (step === 4) {
@@ -98,6 +94,8 @@ export default function FormShell() {
       const fd = new FormData()
       Object.entries(fields).forEach(([k, v]) => fd.append(k, String(v)))
       fd.append('website', honeypotRef.current?.value ?? '')
+      if (files.essay1) fd.append('essay1', files.essay1)
+      if (files.essay2) fd.append('essay2', files.essay2)
       if (files.transcript) fd.append('transcript', files.transcript)
       if (files.resume) fd.append('resume', files.resume)
       if (files.writingSample) fd.append('writingSample', files.writingSample)
@@ -188,9 +186,9 @@ export default function FormShell() {
             {step === 3 && (
               <StepEssays
                 key="step-3"
-                fields={fields}
+                files={files}
                 errors={errors}
-                onChange={onChange}
+                onFile={onFile}
                 onBack={() => goTo(2)}
                 onNext={() => goTo(4)}
               />
