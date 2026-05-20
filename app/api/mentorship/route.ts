@@ -129,12 +129,11 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <applications@lonestareritreanscholars.com>'
 
-    await Promise.all([
-      resend.emails.send({
-        from,
-        to: 'ob.alkhaffaf@gmail.com',
-        subject: `New Mentor Application — ${firstName} ${lastName}`,
-        html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
+    const adminSend = await resend.emails.send({
+      from,
+      to: 'ob.alkhaffaf@gmail.com',
+      subject: `New Mentor Application — ${firstName} ${lastName}`,
+      html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Mentor Application</h1>
 <table style="width:100%;border-collapse:collapse;margin-top:16px">
   <tr><td style="padding:7px 0;color:#6b6b6b;width:200px">Full Name</td><td style="padding:7px 0"><strong>${firstName} ${lastName}</strong></td></tr>
@@ -149,20 +148,21 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:7px 0;color:#6b6b6b">LinkedIn</td><td style="padding:7px 0">${linkedin || '—'}</td></tr>
 </table>
 </body></html>`,
-      }),
-      resend.emails.send({
-        from,
-        to: email,
-        subject: 'Mentor Application Received — Eritrean Scholars Fund',
-        html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
+    })
+    if (adminSend.error) console.error('Mentorship admin notification failed:', adminSend.error)
+
+    await resend.emails.send({
+      from,
+      to: email,
+      subject: 'Mentor Application Received — Eritrean Scholars Fund',
+      html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">Application Received</h1>
 <p>Hi ${firstName},</p>
 <p>Thank you for applying to be a mentor with the Eritrean Scholars Fund. We'll review your application and be in touch soon.</p>
 <p>We're grateful for your willingness to give back and invest in the next generation of our community.</p>
 <p style="color:#6b6b6b;font-size:13px;margin-top:32px">Questions? Reply to this email or contact us at <a href="mailto:ob.alkhaffaf@gmail.com">ob.alkhaffaf@gmail.com</a>.</p>
 </body></html>`,
-      }),
-    ])
+    })
 
     return NextResponse.json({ success: true })
   } catch (err: unknown) {

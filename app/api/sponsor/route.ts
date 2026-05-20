@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <applications@lonestareritreanscholars.com>'
 
-    await resend.emails.send({
+    const adminSend = await resend.emails.send({
       from,
       to: 'ob.alkhaffaf@gmail.com',
       subject: `Sponsorship Inquiry — ${businessName} — ${tier}`,
@@ -138,6 +138,7 @@ export async function POST(request: NextRequest) {
         <p>${message || '—'}</p>
       `,
     })
+    if (adminSend.error) console.error('Sponsor admin notification failed:', adminSend.error)
 
     return NextResponse.json({ success: true })
   } catch (err: unknown) {

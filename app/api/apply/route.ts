@@ -228,12 +228,11 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <applications@lonestareritreanscholars.com>'
 
-    await Promise.all([
-      resend.emails.send({
-        from,
-        to: 'ob.alkhaffaf@gmail.com',
-        subject: `New Application — ${firstName} ${lastName}`,
-        html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
+    const adminSend = await resend.emails.send({
+      from,
+      to: 'ob.alkhaffaf@gmail.com',
+      subject: `New Application — ${firstName} ${lastName}`,
+      html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Scholarship Application</h1>
 
 <h2 style="color:#1a3328;margin-top:28px">Personal</h2>
@@ -276,26 +275,27 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:6px 0;color:#6b6b6b">Parent Occupations</td><td style="padding:6px 0">${parentOccupations || '—'}</td></tr>
 </table>
 </body></html>`,
-        attachments: [
-          { filename: essay1File.name,        content: essay1Buf },
-          { filename: essay2File.name,        content: essay2Buf },
-          { filename: transcriptFile.name,    content: transcriptBuf },
-          { filename: resumeFile.name,        content: resumeBuf },
-          { filename: writingSampleFile.name, content: writingSampleBuf },
-        ],
-      }),
-      resend.emails.send({
-        from,
-        to: email,
-        subject: 'Application Received — Eritrean Scholars Fund',
-        html: `
+      attachments: [
+        { filename: essay1File.name,        content: essay1Buf },
+        { filename: essay2File.name,        content: essay2Buf },
+        { filename: transcriptFile.name,    content: transcriptBuf },
+        { filename: resumeFile.name,        content: resumeBuf },
+        { filename: writingSampleFile.name, content: writingSampleBuf },
+      ],
+    })
+    if (adminSend.error) console.error('Apply admin notification failed:', adminSend.error)
+
+    await resend.emails.send({
+      from,
+      to: email,
+      subject: 'Application Received — Eritrean Scholars Fund',
+      html: `
           <h2>Thank you for applying, ${firstName}!</h2>
           <p>We have received your application for the Eritrean Scholars Fund scholarship.</p>
           <p>Winners will be announced on <strong>August 2, 2025</strong>.</p>
           <p>Questions? Email <a href="mailto:ob.alkhaffaf@gmail.com">ob.alkhaffaf@gmail.com</a>.</p>
         `,
-      }),
-    ])
+    })
 
     return NextResponse.json({ success: true })
   } catch (err: unknown) {
