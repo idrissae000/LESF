@@ -27,8 +27,8 @@ export default function Nav() {
 
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-          <Image src="/logo (2).png" alt="Eritrean Scholars Fund" width={40} height={40} style={{ display: 'block', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
+          <Image src="/logo (2).png" alt="Eritrean Scholars Fund" width={56} height={56} style={{ display: 'block', flexShrink: 0 }} />
+          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.65rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
             Eritrean Scholars Fund
           </span>
         </Link>
