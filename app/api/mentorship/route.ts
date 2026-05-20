@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
     })
 
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <onboarding@resend.dev>'
+    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <applications@lonestareritreanscholars.com>'
 
     await Promise.all([
       resend.emails.send({

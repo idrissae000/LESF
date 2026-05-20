@@ -226,7 +226,7 @@ export async function POST(request: NextRequest) {
 
     // Send emails — admin gets Drive links + PDF attachments, applicant gets confirmation
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <onboarding@resend.dev>'
+    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <applications@lonestareritreanscholars.com>'
 
     await Promise.all([
       resend.emails.send({
