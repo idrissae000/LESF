@@ -6,10 +6,10 @@ export default function Footer() {
       <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--gold-light)', marginBottom: '0.35rem' }}>
-            Lonestar Eritrean Scholars Fund
+            Eritrean Scholars Fund
           </div>
           <div style={{ fontSize: '0.78rem', letterSpacing: '0.04em' }}>
-            © 2026 Lonestar Eritrean Scholars Fund. All rights reserved.
+            © 2026 Eritrean Scholars Fund. All rights reserved.
           </div>
         </div>
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>

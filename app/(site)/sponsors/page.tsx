@@ -106,7 +106,7 @@ export default function SponsorsPage() {
             Become a Sponsor
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.7 }}>
-            Partner with the Lonestar Eritrean Scholars Fund and support education while gaining meaningful exposure to an engaged community audience.
+            Partner with the Eritrean Scholars Fund and support education while gaining meaningful exposure to an engaged community audience.
           </p>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function SponsorsPage() {
             <div style={{ textAlign: 'center', padding: '3rem 2rem', background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px' }}>
               <div style={{ width: '56px', height: '56px', background: 'var(--forest)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', fontSize: '1.5rem', color: 'white' }}>✓</div>
               <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>Inquiry Received</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>Thank you for your interest in sponsoring the Lonestar Eritrean Scholars Fund. We'll be in touch shortly.</p>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>Thank you for your interest in sponsoring the Eritrean Scholars Fund. We'll be in touch shortly.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>

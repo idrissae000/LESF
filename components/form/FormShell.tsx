@@ -153,7 +153,7 @@ export default function FormShell() {
             <div className="checkmark">✓</div>
             <h2>Application Received</h2>
             <p>
-              Thank you for applying to the Lonestar Eritrean Scholars Fund. We&apos;ll be in touch
+              Thank you for applying to the Eritrean Scholars Fund. We&apos;ll be in touch
               at the email you provided. Winners will be announced on <strong>August 2, 2025</strong>.
             </p>
             <p style={{ marginTop: '1rem', fontSize: '0.82rem' }}>

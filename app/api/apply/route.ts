@@ -286,10 +286,10 @@ export async function POST(request: NextRequest) {
       resend.emails.send({
         from,
         to: email,
-        subject: 'Application Received — Lonestar Eritrean Scholars Fund',
+        subject: 'Application Received — Eritrean Scholars Fund',
         html: `
           <h2>Thank you for applying, ${firstName}!</h2>
-          <p>We have received your application for the Lonestar Eritrean Scholars Fund scholarship.</p>
+          <p>We have received your application for the Eritrean Scholars Fund scholarship.</p>
           <p>Winners will be announced on <strong>August 2, 2025</strong>.</p>
           <p>Questions? Email <a href="mailto:idriss.ae000@gmail.com">idriss.ae000@gmail.com</a>.</p>
         `,

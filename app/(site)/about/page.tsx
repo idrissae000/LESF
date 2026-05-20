@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'About — Lonestar Eritrean Scholars Fund' }
+export const metadata: Metadata = { title: 'About — Eritrean Scholars Fund' }
 
 const detail = (label: string, value: string) => ({ label, value })
 const DETAILS = [
@@ -33,7 +33,7 @@ export default function AboutPage() {
             About the Fund
           </h1>
           <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75, maxWidth: '580px' }}>
-            The Lonestar Eritrean Scholars Fund was founded by members of the Eritrean community in Dallas to support young college students achieve their dreams.
+            The Eritrean Scholars Fund was founded by members of the Eritrean community in Dallas to support young college students achieve their dreams.
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function AboutPage() {
             This Fund was founded by members of the Eritrean community in Dallas in order to support young college students achieve their dreams. We believe that investing in education is one of the most powerful ways to strengthen and uplift our community.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
-            The Lonestar Eritrean Scholars Fund is proud to present its first annual scholarship — a $3,000 award given to one deserving Eritrean-American undergraduate student. Our mission is to provide meaningful financial support and encouragement, recognizing the hard work and potential of our community's rising generation.
+            The Eritrean Scholars Fund is proud to present its first annual scholarship — a $3,000 award given to one deserving Eritrean-American undergraduate student. Our mission is to provide meaningful financial support and encouragement, recognizing the hard work and potential of our community's rising generation.
           </p>
         </div>
       </section>

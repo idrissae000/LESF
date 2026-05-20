@@ -16,7 +16,7 @@ export default function HomePage() {
               A scholarship<br />born from our<br /><em style={{ color: 'var(--gold-light)', fontStyle: 'italic' }}>community.</em>
             </h1>
             <p data-hero-item style={{ color: 'rgba(255,255,255,0.68)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2rem', maxWidth: '420px' }}>
-              The Lonestar Eritrean Scholars Fund awards a $3,000 scholarship to a deserving Eritrean-American undergraduate student each year.
+              The Eritrean Scholars Fund awards a $3,000 scholarship to a deserving Eritrean-American undergraduate student each year.
             </p>
             <div data-hero-item style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link href="/apply" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.85rem 2rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.88rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>

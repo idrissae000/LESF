@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'The Giveback Kickback — Lonestar Eritrean Scholars Fund' }
+export const metadata: Metadata = { title: 'The Giveback Kickback — Eritrean Scholars Fund' }
 
 export default function EventPage() {
   return (

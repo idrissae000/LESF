@@ -18,9 +18,9 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Apply — Lonestar Eritrean Scholars Fund',
+  title: 'Apply — Eritrean Scholars Fund',
   description:
-    'Apply for the Lonestar Eritrean Scholars Fund scholarship. Supporting Eritrean-American undergraduate students.',
+    'Apply for the Eritrean Scholars Fund scholarship. Supporting Eritrean-American undergraduate students.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

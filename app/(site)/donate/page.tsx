@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'Donate — Lonestar Eritrean Scholars Fund' }
+export const metadata: Metadata = { title: 'Donate — Eritrean Scholars Fund' }
 
 export default function DonatePage() {
   return (
@@ -28,7 +28,7 @@ export default function DonatePage() {
             Every Dollar Counts
           </h2>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.97rem' }}>
-            The Lonestar Eritrean Scholars Fund is a 501(c)(3) non-profit organization. All donations are tax deductible and go directly toward funding the scholarship award.
+            The Eritrean Scholars Fund is a 501(c)(3) non-profit organization. All donations are tax deductible and go directly toward funding the scholarship award.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
             Community donations — large and small — are what make this scholarship possible. By contributing, you're investing in the education of a promising young Eritrean-American and strengthening our community for generations to come.

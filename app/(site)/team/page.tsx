@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Our Team — Lonestar Eritrean Scholars Fund' }
+export const metadata: Metadata = { title: 'Our Team — Eritrean Scholars Fund' }
 
 const TEAM = [
   {
@@ -10,7 +10,7 @@ const TEAM = [
     title: 'Director, Co-Founder',
     bio: [
       'Edekel "Eddy" Tecle is a practicing attorney specializing in criminal defense and personal injury law, with experience litigating cases in both state and federal courts across Texas. Raised in the Dallas area, he earned his Bachelor\'s degree in Political Science from the University of Houston in 2010 and his law degree from the University of Texas School of Law at Austin in 2013.',
-      'He is the Co-Founder and Director of the Lonestar Eritrean Scholars Fund, where he is committed to expanding opportunity and building pathways for student success through mentorship, advocacy, and community engagement. In addition to his work with the Fund, Eddy is a director of Nahid\'s Kids Rise & Bloom, a non-profit whose mission is to support children and youth involved with the foster care system in the Houston area.',
+      'He is the Co-Founder and Director of the Eritrean Scholars Fund, where he is committed to expanding opportunity and building pathways for student success through mentorship, advocacy, and community engagement. In addition to his work with the Fund, Eddy is a director of Nahid\'s Kids Rise & Bloom, a non-profit whose mission is to support children and youth involved with the foster care system in the Houston area.',
     ],
   },
   {
@@ -33,7 +33,7 @@ const TEAM = [
     bio: [
       'Meron Mesfin is a construction project manager overseeing high level operations for multifamily developments in North Texas. He leads project execution through subcontractor coordination, scheduling, contract negotiations, budgeting, and quality control, ensuring complex projects are delivered efficiently and to a high standard.',
       'He began his career as a home warranty plumber in the Dallas Fort Worth area and later transitioned into new construction plumbing in New Orleans while earning his associate degree in Civil and Construction Applied Engineering Technology. That hands-on experience shaped his understanding of how projects come together and fueled his commitment to building both physical structures and stronger communities. He later earned a bachelor\'s degree in Construction Management from University of Houston, along with a double minor in Business Management and Entrepreneurship from the Bauer College of Business.',
-      'As an Eritrean American and co-founder of the Lonestar Eritrean Scholars Fund, Meron is committed to expanding access to education for college students. His background in discipline, execution, and problem solving directly supports the organization\'s mission to provide scholarships, mentorship, and resources, helping create pathways for the next generation to succeed.',
+      'As an Eritrean American and co-founder of the Eritrean Scholars Fund, Meron is committed to expanding access to education for college students. His background in discipline, execution, and problem solving directly supports the organization\'s mission to provide scholarships, mentorship, and resources, helping create pathways for the next generation to succeed.',
     ],
   },
 ]
@@ -52,7 +52,7 @@ export default function TeamPage() {
             Meet Our Team
           </h1>
           <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1rem', lineHeight: 1.75 }}>
-            The Lonestar Eritrean Scholars Fund was founded by two Dallas-area Eritrean-Americans who believe that community investment starts with education. They built this fund to make that belief real.
+            The Eritrean Scholars Fund was founded by two Dallas-area Eritrean-Americans who believe that community investment starts with education. They built this fund to make that belief real.
           </p>
         </div>
       </section>

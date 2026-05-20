@@ -26,7 +26,7 @@ export default function Nav() {
 
         {/* Logo */}
         <Link href="/" style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--gold-light)', letterSpacing: '0.02em', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-          Lonestar Eritrean Scholars Fund
+          Eritrean Scholars Fund
         </Link>
 
         {/* Desktop links */}
