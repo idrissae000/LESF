@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
@@ -25,8 +26,11 @@ export default function Nav() {
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
         {/* Logo */}
-        <Link href="/" style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--gold-light)', letterSpacing: '0.02em', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-          Eritrean Scholars Fund
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+          <Image src="/logo (2).png" alt="Eritrean Scholars Fund" width={40} height={40} style={{ display: 'block', flexShrink: 0 }} />
+          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
+            Eritrean Scholars Fund
+          </span>
         </Link>
 
         {/* Desktop links */}
