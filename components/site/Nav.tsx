@@ -23,12 +23,12 @@ export default function Nav() {
 
   return (
     <nav style={{ background: 'var(--forest)', borderBottom: '2px solid var(--gold)', position: 'sticky', top: 0, zIndex: 100 }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem 0 0', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem 0 0.75rem', height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: '-1rem' }}>
-          <Image src="/logo (2).png" alt="Eritrean Scholars Fund" width={64} height={64} style={{ display: 'block', flexShrink: 0, imageRendering: 'crisp-edges', filter: 'contrast(1.1) saturate(1.15)' }} />
-          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.65rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+          <Image src="/logo (2).png" alt="Eritrean Scholars Fund" width={72} height={72} style={{ display: 'block', flexShrink: 0, filter: 'contrast(1.1) saturate(1.15)' }} />
+          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.85rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
             Eritrean Scholars Fund
           </span>
         </Link>
