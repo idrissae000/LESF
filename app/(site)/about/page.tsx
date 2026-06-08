@@ -16,7 +16,7 @@ const DETAILS = [
 const req = (text: string) => text
 const ELIGIBILITY = [
   req('Currently enrolled as an undergraduate student'),
-  req('21 years of age or older'),
+  req('18 years of age or older'),
   req('Identifies as North American Eritrean'),
   req('All majors and fields of study are welcome'),
 ]
