@@ -36,6 +36,15 @@ export default function ContactPage() {
 
             <div style={{ borderTop: '1px solid var(--border)' }} />
 
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+              <span style={{ fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)' }}>Instagram</span>
+              <a href="https://www.instagram.com/eritreanscholarsfund" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.3rem', color: 'var(--forest)', textDecoration: 'none', fontWeight: 600 }}>
+                @eritreanscholarsfund
+              </a>
+            </div>
+
+            <div style={{ borderTop: '1px solid var(--border)' }} />
+
             <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7, margin: 0 }}>
               Interested in sponsoring our event or scholarship?{' '}
               <a href="/sponsors" style={{ color: 'var(--forest)', fontWeight: 500 }}>Visit the Sponsors page</a>{' '}

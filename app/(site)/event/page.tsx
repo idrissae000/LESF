@@ -96,6 +96,12 @@ export default function EventPage() {
           <Link href="/sponsors" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.9rem 2.5rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.9rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
             Become a Sponsor
           </Link>
+          <p style={{ marginTop: '2rem', color: 'rgba(255,255,255,0.5)', fontSize: '0.88rem' }}>
+            Follow us on Instagram for updates —{' '}
+            <a href="https://www.instagram.com/eritreanscholarsfund" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold-light)', textDecoration: 'none' }}>
+              @eritreanscholarsfund
+            </a>
+          </p>
         </div>
       </section>
     </>
