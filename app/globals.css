@@ -3,11 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --forest: #1B2A4A;
-  --forest-mid: #243859;
+  --forest: #1a3328;
+  --forest-mid: #1e3d2f;
   --gold: #c9973a;
   --gold-light: #e8b85a;
-  --maroon: #8B1A1A;
   --cream: #faf7f2;
   --cream-dark: #f0ebe1;
   --text: #1c1c1c;
@@ -16,7 +15,7 @@
   --error: #c0392b;
   --success: #1a7a4a;
   --radius: 4px;
-  --shadow: 0 2px 12px rgba(27, 42, 74, 0.10);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 html {
