@@ -120,8 +120,8 @@ export default function FormShell() {
         <div className="hero-meta">
           <div className="item"><span className="val">$3,000</span><span className="lbl">Award Amount</span></div>
           <div className="item"><span className="val">1</span><span className="lbl">Recipient</span></div>
-          <div className="item"><span className="val">Aug 2</span><span className="lbl">Winner Announced</span></div>
-          <div className="item"><span className="val">May 15 – Jul 15</span><span className="lbl">Application Window</span></div>
+          <div className="item"><span className="val">Aug 1</span><span className="lbl">Winner Announced</span></div>
+          <div className="item"><span className="val">Jun 15 – Jul 15</span><span className="lbl">Application Window</span></div>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export default function FormShell() {
             <h2>Application Received</h2>
             <p>
               Thank you for applying to the Eritrean Scholars Fund. We&apos;ll be in touch
-              at the email you provided. Winners will be announced on <strong>August 2, 2025</strong>.
+              at the email you provided. Winners will be announced on <strong>August 1, 2026</strong>.
             </p>
             <p style={{ marginTop: '1rem', fontSize: '0.82rem' }}>
               Questions? Email{' '}

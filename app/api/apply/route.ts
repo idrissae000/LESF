@@ -270,7 +270,7 @@ export async function POST(request: NextRequest) {
       html: `
           <h2>Thank you for applying, ${firstName}!</h2>
           <p>We have received your application for the Eritrean Scholars Fund scholarship.</p>
-          <p>Winners will be announced on <strong>August 2, 2025</strong>.</p>
+          <p>Winners will be announced on <strong>August 1, 2026</strong>.</p>
           <p>Questions? Email <a href="mailto:eddytecle@gmail.com">eddytecle@gmail.com</a>.</p>
         `,
     })

@@ -34,8 +34,8 @@ export default function HomePage() {
             {[
               ['Award', '$3,000'],
               ['Recipients', '1 student'],
-              ['Open', 'May 15 – July 15'],
-              ['Announced', 'August 2, 2026'],
+              ['Open', 'June 15 – July 15'],
+              ['Announced', 'August 1, 2026'],
               ['Eligibility', 'North American Eritrean undergrads'],
             ].map(([label, value]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.7rem 0', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
@@ -76,9 +76,9 @@ export default function HomePage() {
           </ScrollReveal>
           <ScrollReveal group style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '2rem' }}>
             {[
-              { num: '01', title: 'Submit your application', body: 'Fill out the online form between May 15 and July 15. Share your story, your goals, and your documents.' },
+              { num: '01', title: 'Submit your application', body: 'Fill out the online form between June 15 and July 15. Share your story, your goals, and your documents.' },
               { num: '02', title: 'We review every application', body: 'Our committee reads every submission carefully. We\'re looking for drive, community connection, and academic commitment.' },
-              { num: '03', title: 'Winner announced Aug 2', body: 'The recipient is announced live at The Giveback Kickback event on August 1, 2026 in Dallas.' },
+              { num: '03', title: 'Winner announced Aug 1', body: 'The recipient is announced live at The Giveback Kickback event on August 1, 2026 in Dallas.' },
             ].map(({ num, title, body }) => (
               <div key={num} className="card-lift" style={{ padding: '1.75rem', borderTop: '3px solid var(--gold)', background: 'var(--cream)', borderRadius: '0 0 4px 4px' }}>
                 <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2.5rem', fontWeight: 600, color: 'var(--gold)', opacity: 0.35, lineHeight: 1, marginBottom: '0.75rem' }}>{num}</div>
@@ -159,7 +159,7 @@ export default function HomePage() {
       <section style={{ background: 'var(--forest)', color: 'white', padding: '5rem 1.5rem', textAlign: 'center' }}>
         <ScrollReveal>
           <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Applications Open May 15</p>
+            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Applications Open June 15</p>
             <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 600, marginBottom: '1rem', lineHeight: 1.15 }}>
               Your story matters.<br />Don&apos;t wait.
             </h2>

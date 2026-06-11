@@ -27,7 +27,7 @@ export default function EventPage() {
             { val: 'Aug 1, 2026', label: 'Event Date' },
             { val: '250+', label: 'Expected Attendees' },
             { val: '$3,000', label: 'Scholarship Awarded' },
-            { val: 'Aug 2', label: 'Winner Announced' },
+            { val: 'Aug 1', label: 'Winner Announced' },
           ].map(({ val, label }) => (
             <div key={label} style={{ textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.8rem', color: 'var(--gold-light)', fontWeight: 600 }}>{val}</div>
@@ -48,7 +48,7 @@ export default function EventPage() {
             We are hosting a high-energy social event on August 1, 2026, designed to bring together community members, professionals, and supporters for a meaningful cause. The Giveback Kickback aims to connect young Eritreans — young and old — to gather together for a higher purpose.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.97rem' }}>
-            The event will culminate in the awarding of a $3,000 scholarship to a deserving North American Eritrean community member in North America — with the winner announced on August 2, 2026.
+            The event will culminate in the awarding of a $3,000 scholarship to a deserving North American Eritrean community member in North America — with the winner announced on August 1, 2026.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, fontSize: '0.97rem' }}>
             We anticipate hosting at least 250 people at the event, and our marketing and social media reach will extend to thousands of community members across North America.
