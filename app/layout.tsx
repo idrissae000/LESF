@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cinzel, Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Cinzel, Playfair_Display, DM_Sans } from 'next/font/google'
 import './globals.css'
 
 const cinzel = Cinzel({
@@ -9,9 +9,9 @@ const cinzel = Cinzel({
   display: 'swap',
 })
 
-const cormorant = Cormorant_Garamond({
+const cormorant = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '600'],
+  weight: ['400', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
