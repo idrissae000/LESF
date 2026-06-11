@@ -30,12 +30,12 @@ export default function EventPage() {
             { val: '$3,000', label: 'Scholarship Awarded' },
           ].map(({ val, label }) => (
             <div key={label} style={{ textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.8rem', color: 'var(--gold-light)', fontWeight: 600 }}>{val}</div>
+              <div style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '1.5rem', color: 'var(--gold-light)', fontWeight: 500 }}>{val}</div>
               <div style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginTop: '0.2rem' }}>{label}</div>
             </div>
           ))}
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.4rem', color: 'var(--gold-light)', fontWeight: 600, lineHeight: 1.3 }}>Canvas Hotel Rooftop<br /><span style={{ fontSize: '1rem' }}>1325 Wycliff Ave, Dallas, TX</span></div>
+            <div style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: '1.1rem', color: 'var(--gold-light)', fontWeight: 500, lineHeight: 1.4 }}>Canvas Hotel Rooftop<br /><span style={{ fontSize: '0.92rem', fontWeight: 400 }}>1325 Wycliff Ave, Dallas, TX</span></div>
             <div style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginTop: '0.2rem' }}>Venue</div>
           </div>
         </div>
