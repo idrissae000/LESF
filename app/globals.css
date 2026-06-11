@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --forest: #1a3328;
-  --forest-mid: #254d3c;
+  --forest: #1B2A4A;
+  --forest-mid: #243859;
   --gold: #c9973a;
   --gold-light: #e8b85a;
+  --maroon: #8B1A1A;
   --cream: #faf7f2;
   --cream-dark: #f0ebe1;
   --text: #1c1c1c;
@@ -15,7 +16,7 @@
   --error: #c0392b;
   --success: #1a7a4a;
   --radius: 4px;
-  --shadow: 0 2px 12px rgba(26, 51, 40, 0.08);
+  --shadow: 0 2px 12px rgba(27, 42, 74, 0.10);
 }
 
 html {
@@ -29,6 +30,11 @@ body {
   min-height: 100vh;
   font-size: 15px;
   line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-cinzel), var(--font-cormorant), serif;
+  letter-spacing: 0.12em;
 }
 
 /* ── Header ── */
