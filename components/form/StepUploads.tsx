@@ -74,13 +74,16 @@ export default function StepUploads({ files, errors, onFile, onBack, onNext }: P
 
       <UploadArea
         name="transcript"
-        label="Official Transcript"
+        label="Transcript"
         icon="📄"
         hint="PDF only · Max 10 MB"
         file={files.transcript}
         error={!!errors.transcript}
         onFile={onFile}
       />
+      <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '-1.25rem', marginBottom: '1.75rem' }}>
+        Unofficial transcripts are accepted.
+      </p>
 
       <UploadArea
         name="resume"
