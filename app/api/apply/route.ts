@@ -29,9 +29,7 @@ const HEADERS = [
   'School Name', 'Grade Level', 'Major', 'GPA', 'Graduation Year',
   'Essay File',
   'Transcript URL', 'Resume URL', 'Writing Sample URL',
-  'Extracurriculars', 'Volunteer Work',
-  'Ref 1 Name', 'Ref 1 Title', 'Ref 1 Email', 'Ref 1 Phone',
-  'Ref 2 Name', 'Ref 2 Title', 'Ref 2 Email', 'Ref 2 Phone',
+  'Extracurriculars',
   'Lives With Both Parents', 'Number of Siblings', 'Currently Works', 'Parent Occupations',
   'Plans to Attend Event',
   'Eligibility Confirmed', 'Certified Accurate', 'Status',
@@ -141,15 +139,6 @@ export async function POST(request: NextRequest) {
     const graduationYear   = get('graduationYear')
     const attendEvent      = get('attendEvent')
     const extracurriculars = get('extracurriculars')
-    const volunteerWork    = get('volunteerWork')
-    const ref1Name         = get('ref1Name')
-    const ref1Title        = get('ref1Title')
-    const ref1Email        = get('ref1Email')
-    const ref1Phone        = get('ref1Phone')
-    const ref2Name         = get('ref2Name')
-    const ref2Title        = get('ref2Title')
-    const ref2Email        = get('ref2Email')
-    const ref2Phone        = get('ref2Phone')
     const householdParents = get('householdParents')
     const siblings         = get('siblings')
     const currentlyWorks   = get('currentlyWorks')
@@ -211,9 +200,7 @@ export async function POST(request: NextRequest) {
           schoolName, gradeLevel, major, gpa, graduationYear,
           essay2File.name,
           transcriptFile.name, resumeFile.name, writingSampleFile.name,
-          extracurriculars, volunteerWork,
-          ref1Name, ref1Title, ref1Email, ref1Phone,
-          ref2Name, ref2Title, ref2Email, ref2Phone,
+          extracurriculars,
           householdParents, siblings, currentlyWorks, parentOccupations,
           attendEvent,
           'Yes', 'Yes', 'Submitted',
@@ -262,9 +249,6 @@ export async function POST(request: NextRequest) {
 <h2 style="color:#1a3328;margin-top:28px">Optional</h2>
 <table style="width:100%;border-collapse:collapse">
   <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Extracurriculars</td><td style="padding:6px 0">${extracurriculars || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Volunteer Work</td><td style="padding:6px 0">${volunteerWork || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Ref 1</td><td style="padding:6px 0">${ref1Name ? `${ref1Name}, ${ref1Title} — ${ref1Email} / ${ref1Phone}` : '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Ref 2</td><td style="padding:6px 0">${ref2Name ? `${ref2Name}, ${ref2Title} — ${ref2Email} / ${ref2Phone}` : '—'}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Lives With Both Parents</td><td style="padding:6px 0">${householdParents || '—'}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Siblings</td><td style="padding:6px 0">${siblings || '—'}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Currently Works</td><td style="padding:6px 0">${currentlyWorks || '—'}</td></tr>

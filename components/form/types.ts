@@ -14,15 +14,6 @@ export interface FormFields {
   gpa: string
   graduationYear: string
   extracurriculars: string
-  volunteerWork: string
-  ref1Name: string
-  ref1Title: string
-  ref1Email: string
-  ref1Phone: string
-  ref2Name: string
-  ref2Title: string
-  ref2Email: string
-  ref2Phone: string
   householdParents: string
   siblings: string
   currentlyWorks: string
@@ -43,9 +34,7 @@ export const INIT_FIELDS: FormFields = {
   address: '', city: '', state: '', zip: '',
   eligibility: false,
   schoolName: '', gradeLevel: '', major: '', gpa: '', graduationYear: '',
-  extracurriculars: '', volunteerWork: '',
-  ref1Name: '', ref1Title: '', ref1Email: '', ref1Phone: '',
-  ref2Name: '', ref2Title: '', ref2Email: '', ref2Phone: '',
+  extracurriculars: '',
   householdParents: '', siblings: '', currentlyWorks: '', parentOccupations: '',
   certify: false,
   attendEvent: '',
