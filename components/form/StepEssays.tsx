@@ -70,20 +70,9 @@ export default function StepEssays({ files, errors, onFile, onBack, onNext }: Pr
   return (
     <div className="form-section">
       <div className="section-head">
-        <h2>Essay Questions</h2>
-        <p>Write your responses separately and upload each as a PDF. Max 10 MB per file.</p>
+        <h2>Essay Question</h2>
+        <p>Write your response separately and upload it as a PDF. Max 10 MB.</p>
       </div>
-
-      <UploadArea
-        name="essay1"
-        label="Leadership Essay"
-        prompt="Describe what you think it means to be a leader and what it takes to develop leadership qualities."
-        file={files.essay1}
-        error={!!errors.essay1}
-        onFile={onFile}
-      />
-
-      <hr className="divider" />
 
       <UploadArea
         name="essay2"

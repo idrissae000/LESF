@@ -36,7 +36,6 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
   }
 
   if (step === 3) {
-    if (!files.essay1) errs.essay1 = true
     if (!files.essay2) errs.essay2 = true
   }
 
@@ -94,7 +93,6 @@ export default function FormShell() {
       const fd = new FormData()
       Object.entries(fields).forEach(([k, v]) => fd.append(k, String(v)))
       fd.append('website', honeypotRef.current?.value ?? '')
-      if (files.essay1) fd.append('essay1', files.essay1)
       if (files.essay2) fd.append('essay2', files.essay2)
       if (files.transcript) fd.append('transcript', files.transcript)
       if (files.resume) fd.append('resume', files.resume)

@@ -27,7 +27,7 @@ const HEADERS = [
   'Submitted At', 'First Name', 'Last Name', 'Email', 'Phone',
   'Address', 'City', 'State', 'ZIP',
   'School Name', 'Grade Level', 'Major', 'GPA', 'Graduation Year',
-  'Essay 1 File', 'Essay 2 File',
+  'Essay File',
   'Transcript URL', 'Resume URL', 'Writing Sample URL',
   'Extracurriculars', 'Volunteer Work',
   'Ref 1 Name', 'Ref 1 Title', 'Ref 1 Email', 'Ref 1 Phone',
@@ -103,7 +103,7 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
   await formatSheet(sheets, spreadsheetId)
 }
 
-const MAX_PAYLOAD_BYTES = 55 * 1024 * 1024
+const MAX_PAYLOAD_BYTES = 45 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
   const badOrigin = checkOrigin(request)
@@ -155,13 +155,12 @@ export async function POST(request: NextRequest) {
     const currentlyWorks   = get('currentlyWorks')
     const parentOccupations = get('parentOccupations')
 
-    const essay1File        = fd.get('essay1')        as File | null
     const essay2File        = fd.get('essay2')        as File | null
     const transcriptFile    = fd.get('transcript')    as File | null
     const resumeFile        = fd.get('resume')        as File | null
     const writingSampleFile = fd.get('writingSample') as File | null
 
-    if (!essay1File || !essay2File || !transcriptFile || !resumeFile || !writingSampleFile) {
+    if (!essay2File || !transcriptFile || !resumeFile || !writingSampleFile) {
       return NextResponse.json({ error: 'Missing required files.' }, { status: 400 })
     }
 
@@ -176,20 +175,18 @@ export async function POST(request: NextRequest) {
       return header.equals(PDF_MAGIC)
     }
 
-    const [e1Ok, e2Ok, tOk, rOk, wOk] = await Promise.all([
-      validatePDF(essay1File),
+    const [e2Ok, tOk, rOk, wOk] = await Promise.all([
       validatePDF(essay2File),
       validatePDF(transcriptFile),
       validatePDF(resumeFile),
       validatePDF(writingSampleFile),
     ])
 
-    if (!e1Ok || !e2Ok || !tOk || !rOk || !wOk) {
+    if (!e2Ok || !tOk || !rOk || !wOk) {
       return NextResponse.json({ error: 'Invalid file. Each upload must be a PDF under 10 MB.' }, { status: 400 })
     }
 
-    const [essay1Buf, essay2Buf, transcriptBuf, resumeBuf, writingSampleBuf] = await Promise.all([
-      essay1File.arrayBuffer().then(Buffer.from),
+    const [essay2Buf, transcriptBuf, resumeBuf, writingSampleBuf] = await Promise.all([
       essay2File.arrayBuffer().then(Buffer.from),
       transcriptFile.arrayBuffer().then(Buffer.from),
       resumeFile.arrayBuffer().then(Buffer.from),
@@ -212,7 +209,7 @@ export async function POST(request: NextRequest) {
           firstName, lastName, email, phone,
           address, city, state, zip,
           schoolName, gradeLevel, major, gpa, graduationYear,
-          essay1File.name, essay2File.name,
+          essay2File.name,
           transcriptFile.name, resumeFile.name, writingSampleFile.name,
           extracurriculars, volunteerWork,
           ref1Name, ref1Title, ref1Email, ref1Phone,
@@ -255,13 +252,12 @@ export async function POST(request: NextRequest) {
 
 <h2 style="color:#1a3328;margin-top:28px">Uploads</h2>
 <table style="width:100%;border-collapse:collapse">
-  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Leadership Essay</td><td style="padding:6px 0">${essay1File.name}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Community Essay</td><td style="padding:6px 0">${essay2File.name}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Community Essay</td><td style="padding:6px 0">${essay2File.name}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Transcript</td><td style="padding:6px 0">${transcriptFile.name}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Resume</td><td style="padding:6px 0">${resumeFile.name}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Writing Sample</td><td style="padding:6px 0">${writingSampleFile.name}</td></tr>
 </table>
-<p style="color:#6b6b6b;font-size:13px">All five PDFs are attached to this email.</p>
+<p style="color:#6b6b6b;font-size:13px">All four PDFs are attached to this email.</p>
 
 <h2 style="color:#1a3328;margin-top:28px">Optional</h2>
 <table style="width:100%;border-collapse:collapse">
@@ -276,7 +272,6 @@ export async function POST(request: NextRequest) {
 </table>
 </body></html>`,
       attachments: [
-        { filename: essay1File.name,        content: essay1Buf },
         { filename: essay2File.name,        content: essay2Buf },
         { filename: transcriptFile.name,    content: transcriptBuf },
         { filename: resumeFile.name,        content: resumeBuf },

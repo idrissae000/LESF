@@ -32,7 +32,6 @@ export interface FormFields {
 }
 
 export interface UploadedFiles {
-  essay1?: File
   essay2?: File
   transcript?: File
   resume?: File
