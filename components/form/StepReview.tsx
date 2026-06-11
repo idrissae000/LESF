@@ -41,30 +41,23 @@ export default function StepReview({
         </div>
       </div>
 
-      <div className="field" style={{ marginBottom: '0.25rem' }}>
-        <label style={{ marginBottom: '0.6rem', display: 'block' }}>
-          <strong>Award Ceremony <span className="req">✦</span></strong><br />
-          <span style={{ fontWeight: 400 }}>Do you plan to attend the award ceremony on August 1, 2026 in Dallas, TX?</span>
+      <div className="checkbox-field">
+        <input
+          type="checkbox"
+          id="attendEvent"
+          checked={fields.attendEvent}
+          onChange={e => onChange('attendEvent', e.target.checked)}
+        />
+        <label htmlFor="attendEvent">
+          <strong>Event Attendance <span className="req">✦</span></strong>
+          I understand that in order to be awarded the scholarship, I must be present at the event on August 1, 2026.
         </label>
-        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-          {(['Yes', 'No', 'Unsure'] as const).map(opt => (
-            <label key={opt} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.92rem', fontWeight: 400 }}>
-              <input
-                type="radio"
-                name="attendEvent"
-                value={opt}
-                checked={fields.attendEvent === opt}
-                onChange={() => onChange('attendEvent', opt)}
-                style={{ accentColor: 'var(--forest)', width: '16px', height: '16px' }}
-              />
-              {opt}
-            </label>
-          ))}
-        </div>
-        {errors.attendEvent && (
-          <span className="field-error" style={{ display: 'block', marginTop: '0.4rem' }}>Please select an answer.</span>
-        )}
       </div>
+      {errors.attendEvent && (
+        <span className="field-error" style={{ display: 'block', marginTop: '-0.75rem', marginBottom: '1rem' }}>
+          You must acknowledge the attendance requirement.
+        </span>
+      )}
 
       <div className="checkbox-field">
         <input

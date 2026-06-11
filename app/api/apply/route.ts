@@ -31,7 +31,7 @@ const HEADERS = [
   'Transcript URL', 'Resume URL', 'Writing Sample URL',
   'Extracurriculars',
   'Lives With Both Parents', 'Number of Siblings', 'Currently Works', 'Parent Occupations',
-  'Plans to Attend Event',
+  'Attendance Confirmed',
   'Eligibility Confirmed', 'Certified Accurate', 'Status',
 ]
 
@@ -137,7 +137,6 @@ export async function POST(request: NextRequest) {
     const major            = get('major')
     const gpa              = get('gpa')
     const graduationYear   = get('graduationYear')
-    const attendEvent      = get('attendEvent')
     const extracurriculars = get('extracurriculars')
     const householdParents = get('householdParents')
     const siblings         = get('siblings')
@@ -202,7 +201,7 @@ export async function POST(request: NextRequest) {
           transcriptFile.name, resumeFile.name, writingSampleFile.name,
           extracurriculars,
           householdParents, siblings, currentlyWorks, parentOccupations,
-          attendEvent,
+          'Yes',
           'Yes', 'Yes', 'Submitted',
         ]],
       },
@@ -225,7 +224,7 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:6px 0;color:#6b6b6b">Email</td><td style="padding:6px 0">${email}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Phone</td><td style="padding:6px 0">${phone}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Plans to Attend Event</td><td style="padding:6px 0">${attendEvent}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Attendance Confirmed</td><td style="padding:6px 0">Yes</td></tr>
 </table>
 
 <h2 style="color:#1a3328;margin-top:28px">Education</h2>

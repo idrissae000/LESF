@@ -19,7 +19,7 @@ export interface FormFields {
   currentlyWorks: string
   parentOccupations: string
   certify: boolean
-  attendEvent: string
+  attendEvent: boolean
 }
 
 export interface UploadedFiles {
@@ -37,5 +37,5 @@ export const INIT_FIELDS: FormFields = {
   extracurriculars: '',
   householdParents: '', siblings: '', currentlyWorks: '', parentOccupations: '',
   certify: false,
-  attendEvent: '',
+  attendEvent: false,
 }
