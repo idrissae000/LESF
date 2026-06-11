@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Suspense } from 'react'
+import DonateForm from '@/components/site/DonateForm'
 
 export const metadata: Metadata = { title: 'Donate — Eritrean Scholars Fund' }
 
@@ -50,21 +52,10 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Payment coming soon */}
-      <section style={{ background: 'white', padding: '5rem 1.5rem', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '560px', margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Online Giving</p>
-          <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 600, color: 'var(--forest)', marginBottom: '1rem' }}>
-            Online Donations Coming Soon
-          </h2>
-          <p style={{ color: 'var(--text-muted)', lineHeight: 1.75, marginBottom: '2rem', fontSize: '0.95rem' }}>
-            We are currently setting up our secure online donation portal. Check back soon — in the meantime, please reach out to us directly if you'd like to contribute.
-          </p>
-          <div style={{ display: 'inline-block', background: 'var(--cream-dark)', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '1.25rem 2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-            💛 Payment integration coming soon
-          </div>
-        </div>
-      </section>
+      {/* Donation form */}
+      <Suspense fallback={null}>
+        <DonateForm />
+      </Suspense>
 
       {/* CTA to sponsors */}
       <section style={{ background: 'var(--forest)', color: 'white', padding: '5rem 1.5rem', textAlign: 'center' }}>
