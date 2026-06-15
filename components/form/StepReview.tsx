@@ -35,8 +35,7 @@ export default function StepReview({
           <div className="review-section-label" style={{ marginTop: '0.75rem' }}>Documents</div>
           <div>
             Transcript: {files.transcript?.name ?? '—'}<br />
-            Resume: {files.resume?.name ?? '—'}<br />
-            Writing Sample: {files.writingSample?.name ?? '—'}
+            Resume: {files.resume?.name ?? '—'}
           </div>
         </div>
       </div>

@@ -26,7 +26,6 @@ export interface UploadedFiles {
   essay2?: File
   transcript?: File
   resume?: File
-  writingSample?: File
 }
 
 export const INIT_FIELDS: FormFields = {

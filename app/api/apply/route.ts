@@ -28,7 +28,7 @@ const HEADERS = [
   'Address', 'City', 'State', 'ZIP',
   'School Name', 'Grade Level', 'Major', 'GPA', 'Graduation Year',
   'Essay File',
-  'Transcript URL', 'Resume URL', 'Writing Sample URL',
+  'Transcript URL', 'Resume URL',
   'Extracurriculars',
   'Lives With Both Parents', 'Number of Siblings', 'Currently Works', 'Parent Occupations',
   'Attendance Confirmed',
@@ -101,7 +101,7 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
   await formatSheet(sheets, spreadsheetId)
 }
 
-const MAX_PAYLOAD_BYTES = 45 * 1024 * 1024
+const MAX_PAYLOAD_BYTES = 35 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
   const badOrigin = checkOrigin(request)
@@ -143,12 +143,11 @@ export async function POST(request: NextRequest) {
     const currentlyWorks   = get('currentlyWorks')
     const parentOccupations = get('parentOccupations')
 
-    const essay2File        = fd.get('essay2')        as File | null
-    const transcriptFile    = fd.get('transcript')    as File | null
-    const resumeFile        = fd.get('resume')        as File | null
-    const writingSampleFile = fd.get('writingSample') as File | null
+    const essay2File     = fd.get('essay2')     as File | null
+    const transcriptFile = fd.get('transcript') as File | null
+    const resumeFile     = fd.get('resume')     as File | null
 
-    if (!essay2File || !transcriptFile || !resumeFile || !writingSampleFile) {
+    if (!essay2File || !transcriptFile || !resumeFile) {
       return NextResponse.json({ error: 'Missing required files.' }, { status: 400 })
     }
 
@@ -163,22 +162,20 @@ export async function POST(request: NextRequest) {
       return header.equals(PDF_MAGIC)
     }
 
-    const [e2Ok, tOk, rOk, wOk] = await Promise.all([
+    const [e2Ok, tOk, rOk] = await Promise.all([
       validatePDF(essay2File),
       validatePDF(transcriptFile),
       validatePDF(resumeFile),
-      validatePDF(writingSampleFile),
     ])
 
-    if (!e2Ok || !tOk || !rOk || !wOk) {
+    if (!e2Ok || !tOk || !rOk) {
       return NextResponse.json({ error: 'Invalid file. Each upload must be a PDF under 10 MB.' }, { status: 400 })
     }
 
-    const [essay2Buf, transcriptBuf, resumeBuf, writingSampleBuf] = await Promise.all([
+    const [essay2Buf, transcriptBuf, resumeBuf] = await Promise.all([
       essay2File.arrayBuffer().then(Buffer.from),
       transcriptFile.arrayBuffer().then(Buffer.from),
       resumeFile.arrayBuffer().then(Buffer.from),
-      writingSampleFile.arrayBuffer().then(Buffer.from),
     ])
 
     const auth = getAuth()
@@ -198,7 +195,7 @@ export async function POST(request: NextRequest) {
           address, city, state, zip,
           schoolName, gradeLevel, major, gpa, graduationYear,
           essay2File.name,
-          transcriptFile.name, resumeFile.name, writingSampleFile.name,
+          transcriptFile.name, resumeFile.name,
           extracurriculars,
           householdParents, siblings, currentlyWorks, parentOccupations,
           'Yes',
@@ -241,9 +238,8 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Community Essay</td><td style="padding:6px 0">${essay2File.name}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Transcript</td><td style="padding:6px 0">${transcriptFile.name}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Resume</td><td style="padding:6px 0">${resumeFile.name}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Writing Sample</td><td style="padding:6px 0">${writingSampleFile.name}</td></tr>
 </table>
-<p style="color:#6b6b6b;font-size:13px">All four PDFs are attached to this email.</p>
+<p style="color:#6b6b6b;font-size:13px">All three PDFs are attached to this email.</p>
 
 <h2 style="color:#1a3328;margin-top:28px">Optional</h2>
 <table style="width:100%;border-collapse:collapse">
@@ -255,10 +251,9 @@ export async function POST(request: NextRequest) {
 </table>
 </body></html>`,
       attachments: [
-        { filename: essay2File.name,        content: essay2Buf },
-        { filename: transcriptFile.name,    content: transcriptBuf },
-        { filename: resumeFile.name,        content: resumeBuf },
-        { filename: writingSampleFile.name, content: writingSampleBuf },
+        { filename: essay2File.name,     content: essay2Buf },
+        { filename: transcriptFile.name, content: transcriptBuf },
+        { filename: resumeFile.name,     content: resumeBuf },
       ],
     })
     if (adminSend.error) console.error('Apply admin notification failed:', adminSend.error)

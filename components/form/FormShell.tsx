@@ -42,7 +42,6 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
   if (step === 4) {
     if (!files.transcript) errs.transcript = true
     if (!files.resume) errs.resume = true
-    if (!files.writingSample) errs.writingSample = true
   }
 
   if (step === 6) {
@@ -96,7 +95,6 @@ export default function FormShell() {
       if (files.essay2) fd.append('essay2', files.essay2)
       if (files.transcript) fd.append('transcript', files.transcript)
       if (files.resume) fd.append('resume', files.resume)
-      if (files.writingSample) fd.append('writingSample', files.writingSample)
 
       const res = await fetch('/api/apply', { method: 'POST', body: fd })
       const data = await res.json().catch(() => ({}))

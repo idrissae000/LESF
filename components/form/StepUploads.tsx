@@ -95,16 +95,6 @@ export default function StepUploads({ files, errors, onFile, onBack, onNext }: P
         onFile={onFile}
       />
 
-      <UploadArea
-        name="writingSample"
-        label="Writing Sample"
-        icon="✍️"
-        hint="A paper, essay, or writing you're proud of · PDF only · Max 10 MB"
-        file={files.writingSample}
-        error={!!errors.writingSample}
-        onFile={onFile}
-      />
-
       <div className="nav-buttons">
         <button type="button" className="btn btn-outline" onClick={onBack}>← Back</button>
         <button type="button" className="btn btn-primary" onClick={onNext}>Continue →</button>
