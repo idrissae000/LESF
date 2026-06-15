@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: '#9C5221',
+        forest: '#0A1F44',
         'forest-mid': '#254d3c',
         gold: '#c9973a',
         'gold-light': '#e8b85a',
