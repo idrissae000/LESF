@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     const adminSend = await resend.emails.send({
       from,
-      to: 'ob.alkhaffaf@gmail.com',
+      to: 'eddytecle@gmail.com',
       subject: `New Mentor Application — ${firstName} ${lastName}`,
       html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:640px;margin:0 auto;padding:24px">
 <h1 style="color:#1a3328;border-bottom:2px solid #c9973a;padding-bottom:8px">New Mentor Application</h1>
