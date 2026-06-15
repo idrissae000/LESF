@@ -28,7 +28,7 @@ export default function Nav() {
         {/* Logo + desktop links grouped left */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-            <Image src="/logo.png" alt="Eritrean Scholars Fund" width={60} height={60} style={{ display: 'block', width: 'auto', height: '60px' }} />
+            <Image src="/logo.png" alt="Eritrean Scholars Fund" width={60} height={60} unoptimized style={{ display: 'block', width: 'auto', height: '60px' }} />
           </Link>
 
           {/* Desktop links */}
