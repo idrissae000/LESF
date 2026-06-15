@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   title: 'Apply — Eritrean Scholars Fund',
   description:
     'Apply for the Eritrean Scholars Fund scholarship. Supporting North American Eritrean undergraduate and graduate students.',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
