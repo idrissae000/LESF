@@ -23,41 +23,43 @@ export default function Nav() {
 
   return (
     <nav style={{ background: 'var(--forest)', borderBottom: '2px solid var(--gold)', position: 'sticky', top: 0, zIndex: 100 }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem 0 0.75rem', height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
-        {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <Image src="/logo.png" alt="Eritrean Scholars Fund" width={44} height={44} style={{ display: 'block', width: 'auto', height: '44px' }} />
-        </Link>
+        {/* Logo + desktop links grouped left */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <Image src="/logo.png" alt="Eritrean Scholars Fund" width={60} height={60} style={{ display: 'block', width: 'auto', height: '60px' }} />
+          </Link>
 
-        {/* Desktop links */}
-        <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }} className="nav-desktop">
-          {NAV_LINKS.map(({ href, label }) => {
-            const active = pathname === href
-            const isApply = href === '/apply'
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={!isApply ? 'nav-link-animated' : undefined}
-                style={{
-                  padding: isApply ? '0.45rem 1.1rem' : '0.45rem 0.85rem',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  borderRadius: '3px',
-                  fontWeight: isApply ? 600 : 400,
-                  transition: 'all 0.15s',
-                  background: isApply ? 'var(--gold)' : 'transparent',
-                  color: isApply ? 'var(--forest)' : active ? 'white' : 'rgba(255,255,255,0.65)',
-                  borderBottom: active && !isApply ? '2px solid var(--gold)' : '2px solid transparent',
-                }}
-              >
-                {label}
-              </Link>
-            )
-          })}
+          {/* Desktop links */}
+          <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }} className="nav-desktop">
+            {NAV_LINKS.map(({ href, label }) => {
+              const active = pathname === href
+              const isApply = href === '/apply'
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={!isApply ? 'nav-link-animated' : undefined}
+                  style={{
+                    padding: isApply ? '0.45rem 1.1rem' : '0.45rem 0.85rem',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    textDecoration: 'none',
+                    borderRadius: '3px',
+                    fontWeight: isApply ? 600 : 400,
+                    transition: 'all 0.15s',
+                    background: isApply ? 'var(--gold)' : 'transparent',
+                    color: isApply ? 'var(--forest)' : active ? 'white' : 'rgba(255,255,255,0.65)',
+                    borderBottom: active && !isApply ? '2px solid var(--gold)' : '2px solid transparent',
+                  }}
+                >
+                  {label}
+                </Link>
+              )
+            })}
+          </div>
         </div>
 
         {/* Hamburger */}
