@@ -44,6 +44,13 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
     if (!files.resume) errs.resume = true
   }
 
+  if (step === 5) {
+    if (!fields.householdParents) errs.householdParents = true
+    if (!fields.siblings) errs.siblings = true
+    if (!fields.currentlyWorks) errs.currentlyWorks = true
+    if (!fields.parentOccupations.trim()) errs.parentOccupations = true
+  }
+
   if (step === 6) {
     if (!fields.attendEvent) errs.attendEvent = true
     if (!fields.certify) errs.certify = true
@@ -203,6 +210,7 @@ export default function FormShell() {
               <StepOptional
                 key="step-5"
                 fields={fields}
+                errors={errors}
                 onChange={onChange}
                 onBack={() => goTo(4)}
                 onNext={() => goTo(6)}
