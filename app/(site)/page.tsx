@@ -16,7 +16,7 @@ export default function HomePage() {
               A scholarship<br />born from our<br /><em style={{ color: 'var(--gold-light)', fontStyle: 'italic' }}>community.</em>
             </h1>
             <p data-hero-item style={{ color: 'rgba(255,255,255,0.68)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2rem', maxWidth: '420px' }}>
-              The Eritrean Scholars Fund awards a $3,000 scholarship to a deserving North American Eritrean undergraduate student each year.
+              The Eritrean Scholars Fund awards a $3,000 scholarship to a deserving North American Eritrean undergraduate or graduate student each year.
             </p>
             <div data-hero-item style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link href="/apply" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.85rem 2rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.88rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -36,7 +36,7 @@ export default function HomePage() {
               ['Recipients', '1 student'],
               ['Open', 'June 15 – July 15'],
               ['Announced', 'August 1, 2026'],
-              ['Eligibility', 'North American Eritrean undergrads'],
+              ['Eligibility', 'Undergraduate and graduate applicants'],
             ].map(([label, value]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.7rem 0', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                 <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}>{label}</span>

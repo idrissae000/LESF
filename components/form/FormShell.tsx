@@ -121,7 +121,7 @@ export default function FormShell() {
       <div className="hero">
         <div className="eyebrow">First Annual Scholarship · Applications close July 15, 2026</div>
         <h1>Invest in Your Future.<br /><em>Apply Today.</em></h1>
-        <p>Supporting promising North American Eritrean undergraduate students as they pursue their academic dreams.</p>
+        <p>Supporting promising North American Eritrean undergraduate and graduate students as they pursue their academic dreams.</p>
         <div className="hero-meta">
           <div className="item"><span className="val">$3,000</span><span className="lbl">Award Amount</span></div>
           <div className="item"><span className="val">1</span><span className="lbl">Recipient</span></div>
