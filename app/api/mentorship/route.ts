@@ -52,7 +52,7 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
             range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1 },
             cell: {
               userEnteredFormat: {
-                backgroundColor: { red: 0.102, green: 0.200, blue: 0.157 },
+                backgroundColor: { red: 0.039, green: 0.122, blue: 0.267 },
                 textFormat: { bold: true, fontSize: 10, foregroundColor: { red: 1, green: 1, blue: 1 } },
                 horizontalAlignment: 'CENTER',
                 verticalAlignment: 'MIDDLE',

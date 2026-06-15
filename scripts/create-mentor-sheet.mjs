@@ -74,7 +74,7 @@ await sheets.spreadsheets.batchUpdate({
           range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1 },
           cell: {
             userEnteredFormat: {
-              backgroundColor: { red: 0.102, green: 0.200, blue: 0.157 },
+              backgroundColor: { red: 0.039, green: 0.122, blue: 0.267 },
               textFormat: {
                 bold: true,
                 fontSize: 10,

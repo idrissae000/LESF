@@ -4,7 +4,7 @@
 
 :root {
   --forest: #0A1F44;
-  --forest-mid: #1e3d2f;
+  --forest-mid: #1A3366;
   --gold: #c9973a;
   --gold-light: #e8b85a;
   --cream: #faf7f2;
@@ -275,7 +275,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--forest-mid);
-  box-shadow: 0 0 0 3px rgba(37, 77, 60, 0.08);
+  box-shadow: 0 0 0 3px rgba(10, 31, 68, 0.08);
 }
 input.invalid,
 select.invalid,
@@ -364,7 +364,7 @@ textarea.essay {
 .file-upload-area:hover,
 .file-upload-area.dragover {
   border-color: var(--forest-mid);
-  background: rgba(37, 77, 60, 0.03);
+  background: rgba(10, 31, 68, 0.03);
 }
 .file-upload-icon {
   font-size: 1.8rem;

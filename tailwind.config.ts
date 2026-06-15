@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         forest: '#0A1F44',
-        'forest-mid': '#254d3c',
+        'forest-mid': '#1A3366',
         gold: '#c9973a',
         'gold-light': '#e8b85a',
         cream: '#faf7f2',
