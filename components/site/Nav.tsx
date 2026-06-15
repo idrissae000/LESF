@@ -26,11 +26,8 @@ export default function Nav() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem 0 0.75rem', height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-          <Image src="/logo.png" alt="Eritrean Scholars Fund" width={44} height={44} style={{ display: 'block', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.85rem', fontWeight: 700, color: 'var(--gold-light)', letterSpacing: '0.02em' }}>
-            Eritrean Scholars Fund
-          </span>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <Image src="/logo.png" alt="Eritrean Scholars Fund" width={44} height={44} style={{ display: 'block', width: 'auto', height: '44px' }} />
         </Link>
 
         {/* Desktop links */}
