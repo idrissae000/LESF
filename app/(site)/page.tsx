@@ -36,7 +36,7 @@ export default function HomePage() {
               ['Recipients', '1 student'],
               ['Open', 'June 15 – July 15'],
               ['Announced', 'August 1, 2026'],
-              ['Eligibility', 'Undergraduate and graduate applicants'],
+              ['Eligibility', 'Eritrean undergraduate and graduate applicants'],
             ].map(([label, value]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.7rem 0', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                 <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}>{label}</span>
