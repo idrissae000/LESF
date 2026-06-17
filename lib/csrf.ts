@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server'
 const ALLOWED_ORIGINS = [
   'https://lonestareritreanscholars.com',
   'https://www.lonestareritreanscholars.com',
+  'https://lonestareritreanscholars.org',
+  'https://www.lonestareritreanscholars.org',
 ]
 
 export function checkOrigin(request: NextRequest): NextResponse | null {
