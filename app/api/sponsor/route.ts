@@ -120,11 +120,11 @@ export async function POST(request: NextRequest) {
 
     // Existing email notification — unchanged
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <applications@lonestareritreanscholars.com>'
+    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF <applications@lonestareritreanscholars.org>'
 
     const adminSend = await resend.emails.send({
       from,
-      to: 'eddytecle@gmail.com',
+      to: 'ob.alkhaffaf@gmail.com',
       subject: `Sponsorship Inquiry — ${businessName} — ${tier}`,
       html: `
         <h2>New Sponsorship Inquiry</h2>

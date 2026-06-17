@@ -206,11 +206,11 @@ export async function POST(request: NextRequest) {
 
     // Send emails — admin gets Drive links + PDF attachments, applicant gets confirmation
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <applications@lonestareritreanscholars.com>'
+    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <applications@lonestareritreanscholars.org>'
 
     const adminSend = await resend.emails.send({
       from,
-      to: 'eddytecle@gmail.com',
+      to: 'ob.alkhaffaf@gmail.com',
       subject: `New Application — ${firstName} ${lastName}`,
       html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
 <h1 style="color:#0A1F44;border-bottom:2px solid #c9973a;padding-bottom:8px">New Scholarship Application</h1>
