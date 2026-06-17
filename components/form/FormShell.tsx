@@ -9,7 +9,7 @@ import StepUploads from './StepUploads'
 import StepOptional from './StepOptional'
 import StepReview from './StepReview'
 
-const STEP_LABELS = ['Personal', 'Education', 'Essays', 'Uploads', 'Optional', 'Review']
+const STEP_LABELS = ['Personal', 'Education', 'Essays', 'Uploads', 'Financial', 'Review']
 
 function validate(step: number, fields: FormFields, files: UploadedFiles): Record<string, boolean> {
   const errs: Record<string, boolean> = {}
@@ -159,8 +159,8 @@ export default function FormShell() {
             </p>
             <p style={{ marginTop: '1rem', fontSize: '0.82rem' }}>
               Questions? Email{' '}
-              <a href="mailto:eddytecle@gmail.com" style={{ color: 'var(--forest)' }}>
-                eddytecle@gmail.com
+              <a href="mailto:admin@lonestareritreanscholars.org" style={{ color: 'var(--forest)' }}>
+                admin@lonestareritreanscholars.org
               </a>
             </p>
           </div>

@@ -20,8 +20,8 @@ export default function ContactPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
               <span style={{ fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)' }}>Email</span>
-              <a href="mailto:eddytecle@gmail.com" style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.3rem', color: 'var(--forest)', textDecoration: 'none', fontWeight: 600 }}>
-                eddytecle@gmail.com
+              <a href="mailto:admin@lonestareritreanscholars.org" style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.3rem', color: 'var(--forest)', textDecoration: 'none', fontWeight: 600 }}>
+                admin@lonestareritreanscholars.org
               </a>
             </div>
 
