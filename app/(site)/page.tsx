@@ -34,7 +34,7 @@ export default function HomePage() {
             {[
               ['Award', '$3,000'],
               ['Recipients', '1 student'],
-              ['Open', 'June 15 – July 15'],
+              ['Open', 'June 15 – July 25'],
               ['Announced', 'August 1, 2026'],
               ['Eligibility', 'Eritrean undergraduate and graduate applicants'],
             ].map(([label, value]) => (
@@ -76,9 +76,9 @@ export default function HomePage() {
           </ScrollReveal>
           <ScrollReveal group style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '2rem' }}>
             {[
-              { num: '01', title: 'Submit your application', body: 'Fill out the online form between June 15 and July 15. Share your story, your goals, and your documents.' },
+              { num: '01', title: 'Submit your application', body: 'Fill out the online form between June 15 and July 25. Share your story, your goals, and your documents.' },
               { num: '02', title: 'We review every application', body: 'Our committee reads every submission carefully. We\'re looking for drive, community connection, and academic commitment.' },
-              { num: '03', title: 'Winner announced Aug 1', body: 'The recipient is announced live at The Skyline Day Party event on August 1, 2026 in Dallas.' },
+              { num: '03', title: 'Winner announced Aug 1', body: 'The recipient is announced live at The Day Party @ Canvas event on August 1, 2026 in Dallas.' },
             ].map(({ num, title, body }) => (
               <div key={num} className="card-lift" style={{ padding: '1.75rem', borderTop: '3px solid var(--gold)', background: 'var(--cream)', borderRadius: '0 0 4px 4px' }}>
                 <div style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2.5rem', fontWeight: 600, color: 'var(--gold)', opacity: 0.35, lineHeight: 1, marginBottom: '0.75rem' }}>{num}</div>
@@ -97,7 +97,7 @@ export default function HomePage() {
             <div>
               <p style={{ fontSize: '0.7rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>August 1, 2026</p>
               <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 600, color: 'var(--forest)', lineHeight: 1.2, marginBottom: '1rem' }}>
-                The Skyline Day Party
+                The Day Party @ Canvas
               </h2>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.5rem', fontSize: '0.97rem' }}>
                 A community event in Dallas bringing together 250+ attendees to celebrate North American Eritrean excellence. The scholarship winner will be announced live at the event.
@@ -164,7 +164,7 @@ export default function HomePage() {
               Your story matters.<br />Don&apos;t wait.
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: '2rem', fontSize: '0.97rem' }}>
-              Applications close July 15, 2026. It takes 15 minutes and could change everything.
+              Applications close July 25, 2026. It takes 15 minutes and could change everything.
             </p>
             <Link href="/apply" className="btn btn-primary" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.9rem 2.5rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.9rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               Start Your Application

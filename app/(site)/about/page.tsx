@@ -8,7 +8,7 @@ const DETAILS = [
   detail('Award Amount', '$3,000'),
   detail('Recipients', '1 student'),
   detail('Application Opens', 'June 15, 2026'),
-  detail('Application Closes', 'July 15, 2026'),
+  detail('Application Closes', 'July 25, 2026'),
   detail('Winner Announced', 'August 1, 2026'),
   detail('Eligible Majors', 'All majors welcome'),
 ]
@@ -95,7 +95,7 @@ export default function AboutPage() {
             Think You Qualify?
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.7, marginBottom: '2rem' }}>
-            Applications are open June 15 – July 15, 2026. Don't miss your opportunity.
+            Applications are open June 15 – July 25, 2026. Don't miss your opportunity.
           </p>
           <Link href="/apply" style={{ display: 'inline-block', background: 'var(--gold)', color: 'var(--forest)', fontWeight: 700, padding: '0.9rem 2.5rem', borderRadius: '3px', textDecoration: 'none', fontSize: '0.9rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
             Apply Now

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'The Skyline Day Party — Eritrean Scholars Fund' }
+export const metadata: Metadata = { title: 'The Day Party @ Canvas — Eritrean Scholars Fund' }
 
 export default function EventPage() {
   return (
@@ -12,7 +12,7 @@ export default function EventPage() {
         <div style={{ maxWidth: '720px', margin: '0 auto', position: 'relative' }}>
           <p data-hero-item style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>August 1, 2026 · 4:00 PM – 9:00 PM · Canvas Hotel Rooftop, Dallas TX</p>
           <h1 data-hero-item style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(2.2rem, 6vw, 3.8rem)', fontWeight: 600, lineHeight: 1.1, marginBottom: '1rem' }}>
-            The Skyline Day Party
+            The Day Party @ Canvas
           </h1>
           <p data-hero-item style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1.05rem', lineHeight: 1.7, maxWidth: '540px', margin: '0 auto' }}>
             A high-energy community celebration bringing together young Eritreans, professionals, and supporters for a meaningful cause.
@@ -49,7 +49,7 @@ export default function EventPage() {
             Community, Celebration & Purpose
           </h2>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.97rem' }}>
-            We are hosting a high-energy social event on August 1, 2026, designed to bring together community members, professionals, and supporters for a meaningful cause. The Skyline Day Party aims to connect young Eritreans — young and old — to gather together for a higher purpose.
+            We are hosting a high-energy social event on August 1, 2026, designed to bring together community members, professionals, and supporters for a meaningful cause. The Day Party @ Canvas aims to connect young Eritreans — young and old — to gather together for a higher purpose.
           </p>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.97rem' }}>
             The event will culminate in the awarding of a $3,000 scholarship to a deserving North American Eritrean community member in North America — with the winner announced on August 1, 2026.
