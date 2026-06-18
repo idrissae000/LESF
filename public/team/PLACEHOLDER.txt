@@ -2,7 +2,7 @@ Team photos go in this folder.
 
 Expected files:
   eddy.jpg     — Edekel Tecle, Director / Co-Founder
-  matthew.jpg  — Meron Mesfin, Director / Co-Founder
+  matthew.jpg  — Meron Mesfun, Director / Co-Founder
 
 Recommended specs:
   Format : JPEG

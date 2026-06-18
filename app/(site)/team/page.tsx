@@ -28,10 +28,10 @@ const TEAM = [
   {
     photo: '/team/matthew.jpg',
     photoPosition: 'top center',
-    name: 'Meron Mesfin',
+    name: 'Meron Mesfun',
     title: 'Director, Co-Founder',
     bio: [
-      'Meron Mesfin is a construction project manager overseeing high level operations for multifamily developments in North Texas. He leads project execution through subcontractor coordination, scheduling, contract negotiations, budgeting, and quality control, ensuring complex projects are delivered efficiently and to a high standard.',
+      'Meron Mesfun is a construction project manager overseeing high level operations for multifamily developments in North Texas. He leads project execution through subcontractor coordination, scheduling, contract negotiations, budgeting, and quality control, ensuring complex projects are delivered efficiently and to a high standard.',
       'He began his career as a home warranty plumber in the Dallas Fort Worth area and later transitioned into new construction plumbing in New Orleans while earning his associate degree in Civil and Construction Applied Engineering Technology. That hands-on experience shaped his understanding of how projects come together and fueled his commitment to building both physical structures and stronger communities. He later earned a bachelor\'s degree in Construction Management from University of Houston, along with a double minor in Business Management and Entrepreneurship from the Bauer College of Business.',
       'As an Eritrean American and co-founder of the Eritrean Scholars Fund, Meron is committed to expanding access to education for college students. His background in discipline, execution, and problem solving directly supports the organization\'s mission to provide scholarships, mentorship, and resources, helping create pathways for the next generation to succeed.',
     ],
