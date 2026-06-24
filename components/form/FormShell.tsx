@@ -20,6 +20,7 @@ function validate(step: number, fields: FormFields, files: UploadedFiles): Recor
     if (!fields.email.trim() || !/\S+@\S+\.\S+/.test(fields.email)) errs.email = true
     if (!fields.phone.trim()) errs.phone = true
     if (!fields.address.trim()) errs.address = true
+    if (!fields.country) errs.country = true
     if (!fields.city.trim()) errs.city = true
     if (!fields.state) errs.state = true
     if (!fields.zip.trim()) errs.zip = true

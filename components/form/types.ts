@@ -4,6 +4,7 @@ export interface FormFields {
   email: string
   phone: string
   address: string
+  country: string
   city: string
   state: string
   zip: string
@@ -30,7 +31,7 @@ export interface UploadedFiles {
 
 export const INIT_FIELDS: FormFields = {
   firstName: '', lastName: '', email: '', phone: '',
-  address: '', city: '', state: '', zip: '',
+  address: '', country: 'United States', city: '', state: '', zip: '',
   eligibility: false,
   schoolName: '', gradeLevel: '', major: '', gpa: '', graduationYear: '',
   extracurriculars: '',

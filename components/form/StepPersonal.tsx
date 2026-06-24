@@ -7,14 +7,37 @@ const US_STATES = [
   'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY',
 ]
 
+const CA_PROVINCES = [
+  'Alberta',
+  'British Columbia',
+  'Manitoba',
+  'New Brunswick',
+  'Newfoundland and Labrador',
+  'Northwest Territories',
+  'Nova Scotia',
+  'Nunavut',
+  'Ontario',
+  'Prince Edward Island',
+  'Quebec',
+  'Saskatchewan',
+  'Yukon',
+]
+
 interface Props {
-  fields: Pick<FormFields, 'firstName'|'lastName'|'email'|'phone'|'address'|'city'|'state'|'zip'|'eligibility'>
+  fields: Pick<FormFields, 'firstName'|'lastName'|'email'|'phone'|'address'|'country'|'city'|'state'|'zip'|'eligibility'>
   errors: Record<string, boolean>
   onChange: (name: keyof FormFields, value: string | boolean) => void
   onNext: () => void
 }
 
 export default function StepPersonal({ fields, errors, onChange, onNext }: Props) {
+  const isCanada = fields.country === 'Canada'
+
+  function handleCountryChange(value: string) {
+    onChange('country', value)
+    onChange('state', '')
+  }
+
   return (
     <div className="form-section">
       <div className="section-head">
@@ -91,6 +114,22 @@ export default function StepPersonal({ fields, errors, onChange, onNext }: Props
         </div>
       </div>
 
+      <div className="field-row single">
+        <div className="field">
+          <label htmlFor="country">Country <span className="req">✦</span></label>
+          <select
+            id="country"
+            value={fields.country}
+            onChange={e => handleCountryChange(e.target.value)}
+            className={errors.country ? 'invalid' : ''}
+          >
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+          </select>
+          {errors.country && <span className="field-error">Required.</span>}
+        </div>
+      </div>
+
       <div className="field-row triple">
         <div className="field">
           <label htmlFor="city">City <span className="req">✦</span></label>
@@ -105,29 +144,30 @@ export default function StepPersonal({ fields, errors, onChange, onNext }: Props
           {errors.city && <span className="field-error">Required.</span>}
         </div>
         <div className="field">
-          <label htmlFor="state">State <span className="req">✦</span></label>
+          <label htmlFor="state">{isCanada ? 'Province / Territory' : 'State'} <span className="req">✦</span></label>
           <select
             id="state"
             value={fields.state}
             onChange={e => onChange('state', e.target.value)}
             className={errors.state ? 'invalid' : ''}
           >
-            <option value="">Select state</option>
-            {US_STATES.map(s => (
-              <option key={s} value={s}>{s}</option>
-            ))}
+            <option value="">{isCanada ? 'Select province' : 'Select state'}</option>
+            {isCanada
+              ? CA_PROVINCES.map(p => <option key={p} value={p}>{p}</option>)
+              : US_STATES.map(s => <option key={s} value={s}>{s}</option>)
+            }
           </select>
           {errors.state && <span className="field-error">Required.</span>}
         </div>
         <div className="field">
-          <label htmlFor="zip">ZIP Code <span className="req">✦</span></label>
+          <label htmlFor="zip">ZIP / Postal Code <span className="req">✦</span></label>
           <input
             type="text"
             id="zip"
             value={fields.zip}
             onChange={e => onChange('zip', e.target.value)}
             className={errors.zip ? 'invalid' : ''}
-            placeholder="75201"
+            placeholder={isCanada ? 'A1A 1A1' : '75201'}
             maxLength={10}
           />
           {errors.zip && <span className="field-error">Required.</span>}

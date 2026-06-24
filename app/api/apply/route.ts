@@ -25,7 +25,7 @@ function getAuth(): JWT | null {
 
 const HEADERS = [
   'Submitted At', 'First Name', 'Last Name', 'Email', 'Phone',
-  'Address', 'City', 'State', 'ZIP',
+  'Address', 'Country', 'City', 'State/Province', 'ZIP',
   'School Name', 'Grade Level', 'Major', 'GPA', 'Graduation Year',
   'Essay File',
   'Transcript URL', 'Resume URL',
@@ -129,6 +129,7 @@ export async function POST(request: NextRequest) {
     const email            = get('email')
     const phone            = get('phone')
     const address          = get('address')
+    const country          = get('country')
     const city             = get('city')
     const state            = get('state')
     const zip              = get('zip')
@@ -192,7 +193,7 @@ export async function POST(request: NextRequest) {
         values: [[
           new Date().toISOString(),
           firstName, lastName, email, phone,
-          address, city, state, zip,
+          address, country, city, state, zip,
           schoolName, gradeLevel, major, gpa, graduationYear,
           essay2File.name,
           transcriptFile.name, resumeFile.name,
@@ -220,7 +221,7 @@ export async function POST(request: NextRequest) {
   <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Full Name</td><td style="padding:6px 0"><strong>${firstName} ${lastName}</strong></td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Email</td><td style="padding:6px 0">${email}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Phone</td><td style="padding:6px 0">${phone}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}</td></tr>
+  <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}, ${country}</td></tr>
   <tr><td style="padding:6px 0;color:#6b6b6b">Attendance Confirmed</td><td style="padding:6px 0">Yes</td></tr>
 </table>
 

@@ -26,7 +26,7 @@ export default function StepReview({
           <div className="review-section-label">Personal</div>
           <div>Name: {fields.firstName} {fields.lastName}</div>
           <div>Email: {fields.email} &nbsp;·&nbsp; Phone: {fields.phone}</div>
-          <div>Address: {fields.address}, {fields.city}, {fields.state} {fields.zip}</div>
+          <div>Address: {fields.address}, {fields.city}, {fields.state} {fields.zip}, {fields.country}</div>
 
           <div className="review-section-label" style={{ marginTop: '0.75rem' }}>Education</div>
           <div>{fields.schoolName} · {fields.gradeLevel} · Major: {fields.major} · GPA: {fields.gpa}</div>
