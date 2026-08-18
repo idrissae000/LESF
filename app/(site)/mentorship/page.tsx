@@ -70,34 +70,7 @@ export default function MentorshipPage() {
         </div>
       </section>
 
-      {/* What mentors do */}
-      <section style={{ background: 'var(--cream)', padding: '5rem 1.5rem' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: '0.75rem' }}>The Program</p>
-          <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 600, color: 'var(--forest)', textAlign: 'center', marginBottom: '1.25rem' }}>
-            Invest in the Next Generation
-          </h2>
-          <p style={{ color: 'var(--text-muted)', textAlign: 'center', maxWidth: '600px', margin: '0 auto 3rem', lineHeight: 1.8, fontSize: '0.97rem' }}>
-            Our mentorship program connects community professionals with scholarship recipients and applicants. Mentors share their knowledge, open doors, and help students navigate the path ahead.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1.25rem' }}>
-            {[
-              { icon: '🧭', title: 'Career Guidance', body: 'Help students understand their field, navigate early career decisions, and set meaningful goals.' },
-              { icon: '🤝', title: 'Community Connection', body: 'Strengthen the North American Eritrean community by building bridges between generations.' },
-              { icon: '💡', title: 'Professional Insight', body: 'Share lessons from your own journey — the things you wish someone had told you.' },
-              { icon: '📅', title: 'Flexible Commitment', body: 'Mentorship is shaped around your schedule. Even a few conversations can make a lasting difference.' },
-            ].map(({ icon, title, body }) => (
-              <div key={title} className="card-lift" style={{ background: 'white', border: '1px solid var(--border)', borderTop: '3px solid var(--gold)', borderRadius: '4px', padding: '1.5rem' }}>
-                <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{icon}</div>
-                <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.15rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>{title}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.87rem', lineHeight: 1.65 }}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Application form */}
+      {/* Closed notice */}
       <section style={{ background: 'white', padding: '5rem 1.5rem', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '660px', margin: '0 auto' }}>
           <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: '0.75rem' }}>Apply</p>

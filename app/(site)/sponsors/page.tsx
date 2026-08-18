@@ -111,67 +111,7 @@ export default function SponsorsPage() {
         </div>
       </section>
 
-      {/* Why sponsor */}
-      <section style={{ background: 'var(--cream)', padding: '5rem 1.5rem' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: '0.75rem' }}>Why Sponsor?</p>
-          <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 600, color: 'var(--forest)', textAlign: 'center', marginBottom: '1.25rem' }}>
-            Your Investment. Our Community.
-          </h2>
-          <p style={{ color: 'var(--text-muted)', textAlign: 'center', maxWidth: '640px', margin: '0 auto 3rem', lineHeight: 1.75, fontSize: '0.97rem' }}>
-            We are hosting a high-energy social event on August 1, 2026, bringing together community members, professionals, and supporters. We anticipate 250+ attendees, with marketing and social media reach extending to thousands of people.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '1.25rem' }}>
-            {[
-              { icon: '🎓', title: 'Support Education', body: 'Directly fund a $3,000 scholarship for a deserving North American Eritrean student.' },
-              { icon: '📣', title: 'Brand Exposure', body: 'Reach 250+ event attendees and thousands through our marketing and social media.' },
-              { icon: '🤝', title: 'Social Responsibility', body: 'Enhance your brand profile through meaningful community involvement.' },
-              { icon: '💼', title: 'Tax Benefits', body: 'Qualifies as a 501(c)(3) charitable donation and as a business expense for federal taxes.' },
-            ].map(({ icon, title, body }) => (
-              <div key={title} className="card-lift" style={{ background: 'white', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.5rem', borderTop: '3px solid var(--gold)' }}>
-                <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{icon}</div>
-                <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>{title}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.65 }}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tiers */}
-      <section style={{ background: 'white', padding: '5rem 1.5rem', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '1050px', margin: '0 auto' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: '0.75rem' }}>Sponsorship Packages</p>
-          <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 600, color: 'var(--forest)', textAlign: 'center', marginBottom: '3rem' }}>
-            Choose Your Tier
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: '1.25rem' }}>
-            {TIERS.map(({ name, amount, color, badgeColor, featured, perks }) => (
-              <div key={name} style={{ background: featured ? 'var(--forest)' : 'var(--cream)', border: `2px solid ${featured ? 'var(--gold)' : 'var(--border)'}`, borderRadius: '4px', padding: '1.75rem', position: 'relative', color: featured ? 'white' : 'inherit' }}>
-                {featured && <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', background: 'var(--gold)', color: 'var(--forest)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '0.2rem 0.75rem', borderRadius: '0 0 4px 4px' }}>Most Popular</div>}
-                <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'block', marginBottom: '0.65rem' }}>
-                  <circle cx="14" cy="14" r="12" fill={badgeColor} />
-                  <circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-                </svg>
-                <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.4rem', fontWeight: 600, color: featured ? 'var(--gold-light)' : 'var(--forest)', marginBottom: '0.25rem' }}>{name}</h3>
-                <div style={{ fontSize: '1.6rem', fontFamily: 'var(--font-cormorant), serif', fontWeight: 600, color: featured ? 'white' : color, marginBottom: '1.25rem' }}>{amount}</div>
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                  {perks.map(p => (
-                    <li key={p} style={{ fontSize: '0.82rem', lineHeight: 1.55, color: featured ? 'rgba(255,255,255,0.8)' : 'var(--text-muted)', display: 'flex', gap: '0.5rem' }}>
-                      <span style={{ color: 'var(--gold)', flexShrink: 0 }}>✦</span>{p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div style={{ marginTop: '2rem', background: 'var(--cream-dark)', border: '1px solid var(--border)', borderLeft: '4px solid var(--gold)', borderRadius: '0 4px 4px 0', padding: '1rem 1.25rem', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
-            <strong style={{ color: 'var(--text)' }}>Additional Opportunities:</strong> In-kind sponsorships (products or services) and custom sponsorship packages are available upon request.
-          </div>
-        </div>
-      </section>
-
-      {/* Inquiry form */}
+      {/* Closed notice */}
       <section style={{ background: 'var(--cream)', padding: '5rem 1.5rem', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <p style={{ fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: '0.75rem' }}>Get in Touch</p>
