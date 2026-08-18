@@ -11,6 +11,8 @@ import StepReview from './StepReview'
 
 const STEP_LABELS = ['Personal', 'Education', 'Essays', 'Uploads', 'Financial', 'Review']
 
+const APPLICATIONS_OPEN = false
+
 function validate(step: number, fields: FormFields, files: UploadedFiles): Record<string, boolean> {
   const errs: Record<string, boolean> = {}
 
@@ -136,12 +138,12 @@ export default function FormShell() {
           <div className="progress-inner">
             {STEP_LABELS.map((label, i) => {
               const num = i + 1
+              const cls = APPLICATIONS_OPEN
+                ? `step-tab${step === num ? ' active' : ''}${step > num ? ' done' : ''}`
+                : 'step-tab step-tab-closed'
               return (
-                <div
-                  key={num}
-                  className={`step-tab${step === num ? ' active' : ''}${step > num ? ' done' : ''}`}
-                >
-                  {step > num ? `✓ ${num}. ${label}` : `${num}. ${label}`}
+                <div key={num} className={cls}>
+                  {num}. {label}
                 </div>
               )
             })}
@@ -150,7 +152,22 @@ export default function FormShell() {
       )}
 
       <div className="page">
-        {success ? (
+        {!APPLICATIONS_OPEN ? (
+          <div className="success-screen" style={{ textAlign: 'center' }}>
+            <div className="checkmark" style={{ background: 'var(--border)', color: 'var(--text-muted)' }}>✕</div>
+            <h2 style={{ color: 'var(--forest)' }}>Applications Are Closed</h2>
+            <p style={{ maxWidth: '480px', margin: '0 auto' }}>
+              The application window for the 2026 Eritrean Scholars Fund scholarship has closed.
+              Follow us on Instagram for updates on future cycles.
+            </p>
+            <p style={{ marginTop: '1rem', fontSize: '0.82rem' }}>
+              Questions? Email{' '}
+              <a href="mailto:admin@lonestareritreanscholars.org" style={{ color: 'var(--forest)' }}>
+                admin@lonestareritreanscholars.org
+              </a>
+            </p>
+          </div>
+        ) : success ? (
           <div className="success-screen">
             <div className="checkmark">✓</div>
             <h2>Application Received</h2>
@@ -235,4 +252,5 @@ export default function FormShell() {
       </div>
     </>
   )
+
 }

@@ -163,6 +163,11 @@ h1, h2, h3 {
 .step-tab.done {
   color: var(--success);
 }
+.step-tab.step-tab-closed {
+  color: var(--border);
+  opacity: 0.5;
+  pointer-events: none;
+}
 
 /* ── Layout ── */
 .page {

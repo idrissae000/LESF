@@ -8,6 +8,8 @@ import { checkOrigin } from '@/lib/csrf'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
+const APPLICATIONS_OPEN = false
+
 function getAuth(): JWT | null {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON
   if (!raw) return null
@@ -104,6 +106,10 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
 const MAX_PAYLOAD_BYTES = 35 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
+  if (!APPLICATIONS_OPEN) {
+    return NextResponse.json({ error: 'Applications are currently closed.' }, { status: 403 })
+  }
+
   const badOrigin = checkOrigin(request)
   if (badOrigin) return badOrigin
 
