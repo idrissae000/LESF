@@ -3,7 +3,8 @@ import Stripe from 'stripe'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
+  return NextResponse.json({ error: 'Donations are currently unavailable.' }, { status: 503 })
   const key = process.env.STRIPE_SECRET_KEY
   if (!key) {
     return NextResponse.json({ error: 'Donation processing is not configured.' }, { status: 500 })

@@ -78,11 +78,12 @@ async function ensureHeaders(sheets: ReturnType<typeof google.sheets>, spreadshe
   })
 }
 
-export async function POST(request: NextRequest) {
-  const badOrigin = checkOrigin(request)
+export async function POST(_request: NextRequest) {
+  return NextResponse.json({ error: 'Submissions are currently closed.' }, { status: 503 })
+  const badOrigin = checkOrigin(_request)
   if (badOrigin) return badOrigin
 
-  const limited = await checkRateLimit(mentorshipLimiter, request)
+  const limited = await checkRateLimit(mentorshipLimiter, _request)
   if (limited) return limited
 
   try {
