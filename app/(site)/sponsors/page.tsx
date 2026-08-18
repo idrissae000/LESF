@@ -180,13 +180,18 @@ export default function SponsorsPage() {
           </h2>
           <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2.5rem', fontSize: '0.9rem' }}>Fill out the form below and we'll be in touch within 48 hours.</p>
 
-          {success ? (
-            <div style={{ textAlign: 'center', padding: '3rem 2rem', background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px' }}>
-              <div style={{ width: '56px', height: '56px', background: 'var(--forest)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', fontSize: '1.5rem', color: 'white' }}>✓</div>
-              <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>Inquiry Received</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>Thank you for your interest in sponsoring the Eritrean Scholars Fund. We'll be in touch shortly.</p>
+          <div style={{ textAlign: 'center', padding: '3rem 2rem', background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>✕</div>
+              <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.5rem' }}>Inquiries Temporarily Closed</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1rem' }}>The sponsorship inquiry form is not currently available. Please check back later.</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                Questions? Email{' '}
+                <a href="mailto:admin@lonestareritreanscholars.org" style={{ color: 'var(--forest)' }}>
+                  admin@lonestareritreanscholars.org
+                </a>
+              </p>
             </div>
-          ) : (
+          {false && (
             <form onSubmit={handleSubmit} style={{ background: 'white', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
               <div className="field-row">

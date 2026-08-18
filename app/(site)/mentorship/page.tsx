@@ -108,16 +108,21 @@ export default function MentorshipPage() {
             Fill out the form below and we&apos;ll be in touch to get you matched with a student.
           </p>
 
-          {success ? (
-            <div style={{ textAlign: 'center', padding: '4rem 2rem', background: 'var(--cream)', border: '1.5px solid var(--border)', borderRadius: '4px' }}>
-              <div style={{ width: '56px', height: '56px', background: 'var(--forest)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', fontSize: '1.5rem', color: 'white' }}>✓</div>
-              <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.8rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>Application Received</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: 1.75, maxWidth: '380px', margin: '0 auto' }}>
-                Thank you for stepping up. We&apos;ll review your application and reach out soon to discuss next steps.
+          <div style={{ textAlign: 'center', padding: '4rem 2rem', background: 'var(--cream)', border: '1.5px solid var(--border)', borderRadius: '4px' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>✕</div>
+              <h3 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.8rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>Applications Closed</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.75, maxWidth: '380px', margin: '0 auto 1.25rem' }}>
+                Mentor applications are not currently open. Please check back later.
+              </p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                Questions? Email{' '}
+                <a href="mailto:admin@lonestareritreanscholars.org" style={{ color: 'var(--forest)' }}>
+                  admin@lonestareritreanscholars.org
+                </a>
               </p>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} noValidate style={{ background: 'var(--cream)', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          {false && (
+            <form noValidate style={{ background: 'var(--cream)', border: '1.5px solid var(--border)', borderRadius: '4px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }} />
 
               {/* Name row */}
