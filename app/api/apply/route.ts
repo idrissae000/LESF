@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
-import { Resend } from 'resend'
 import { applyLimiter, checkRateLimit } from '@/lib/ratelimit'
 import { checkOrigin } from '@/lib/csrf'
 
@@ -179,12 +178,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid file. Each upload must be a PDF under 10 MB.' }, { status: 400 })
     }
 
-    const [essay2Buf, transcriptBuf, resumeBuf] = await Promise.all([
-      essay2File.arrayBuffer().then(Buffer.from),
-      transcriptFile.arrayBuffer().then(Buffer.from),
-      resumeFile.arrayBuffer().then(Buffer.from),
-    ])
-
     const auth = getAuth()
     if (!auth) return NextResponse.json({ error: 'Submission failed. Please try again.' }, { status: 500 })
     const sheets  = google.sheets({ version: 'v4', auth })
@@ -209,72 +202,6 @@ export async function POST(request: NextRequest) {
           'Yes', 'Yes', 'Submitted',
         ]],
       },
-    })
-
-    // Send emails — admin gets Drive links + PDF attachments, applicant gets confirmation
-    const resend = new Resend(process.env.RESEND_API_KEY)
-    const from   = process.env.RESEND_FROM_EMAIL ?? 'LESF Applications <applications@lonestareritreanscholars.org>'
-
-    const adminSend = await resend.emails.send({
-      from,
-      to: 'admin@lonestareritreanscholars.org',
-      subject: `New Application — ${firstName} ${lastName}`,
-      html: `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#1c1c1c;max-width:680px;margin:0 auto;padding:24px">
-<h1 style="color:#0A1F44;border-bottom:2px solid #c9973a;padding-bottom:8px">New Scholarship Application</h1>
-
-<h2 style="color:#0A1F44;margin-top:28px">Personal</h2>
-<table style="width:100%;border-collapse:collapse">
-  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Full Name</td><td style="padding:6px 0"><strong>${firstName} ${lastName}</strong></td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Email</td><td style="padding:6px 0">${email}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Phone</td><td style="padding:6px 0">${phone}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Address</td><td style="padding:6px 0">${address}, ${city}, ${state} ${zip}, ${country}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Attendance Confirmed</td><td style="padding:6px 0">Yes</td></tr>
-</table>
-
-<h2 style="color:#0A1F44;margin-top:28px">Education</h2>
-<table style="width:100%;border-collapse:collapse">
-  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">School</td><td style="padding:6px 0">${schoolName}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Grade Level</td><td style="padding:6px 0">${gradeLevel}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Major</td><td style="padding:6px 0">${major}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">GPA</td><td style="padding:6px 0">${gpa}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Graduation Year</td><td style="padding:6px 0">${graduationYear}</td></tr>
-</table>
-
-<h2 style="color:#0A1F44;margin-top:28px">Uploads</h2>
-<table style="width:100%;border-collapse:collapse">
-  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Community Essay</td><td style="padding:6px 0">${essay2File.name}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Transcript</td><td style="padding:6px 0">${transcriptFile.name}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Resume</td><td style="padding:6px 0">${resumeFile.name}</td></tr>
-</table>
-<p style="color:#6b6b6b;font-size:13px">All three PDFs are attached to this email.</p>
-
-<h2 style="color:#0A1F44;margin-top:28px">Optional</h2>
-<table style="width:100%;border-collapse:collapse">
-  <tr><td style="padding:6px 0;color:#6b6b6b;width:180px">Extracurriculars</td><td style="padding:6px 0">${extracurriculars || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Lives With Both Parents</td><td style="padding:6px 0">${householdParents || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Siblings</td><td style="padding:6px 0">${siblings || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Currently Works</td><td style="padding:6px 0">${currentlyWorks || '—'}</td></tr>
-  <tr><td style="padding:6px 0;color:#6b6b6b">Parent Occupations</td><td style="padding:6px 0">${parentOccupations || '—'}</td></tr>
-</table>
-</body></html>`,
-      attachments: [
-        { filename: essay2File.name,     content: essay2Buf },
-        { filename: transcriptFile.name, content: transcriptBuf },
-        { filename: resumeFile.name,     content: resumeBuf },
-      ],
-    })
-    if (adminSend.error) console.error('Apply admin notification failed:', adminSend.error)
-
-    await resend.emails.send({
-      from,
-      to: email,
-      subject: 'Application Received — Eritrean Scholars Fund',
-      html: `
-          <h2>Thank you for applying, ${firstName}!</h2>
-          <p>We have received your application for the Eritrean Scholars Fund scholarship.</p>
-          <p>Winners will be announced on <strong>August 1, 2026</strong>.</p>
-          <p>Questions? Email <a href="mailto:admin@lonestareritreanscholars.org">admin@lonestareritreanscholars.org</a>.</p>
-        `,
     })
 
     return NextResponse.json({ success: true })
